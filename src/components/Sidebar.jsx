@@ -8,6 +8,7 @@ import {
   Settings,
   LayoutDashboard,
   Pencil,
+  Sparkles,
 } from 'lucide-react'
 import { useHotel } from '../context/HotelContext'
 
@@ -19,12 +20,16 @@ const channels = [
   { to: '/app/hub/email', label: 'Email Marketing', icon: Mail },
 ]
 
+const growth = [
+  { to: '/app/hub/seo-geo', label: 'SEO / GEO con IA', icon: Sparkles, accent: true },
+]
+
 const accountItems = [
   { to: '/app/hub/configuracion', label: 'Configuración', icon: Settings },
   { to: '/app/hub/resumen', label: 'Resumen', icon: LayoutDashboard },
 ]
 
-function Item({ to, label, icon: Icon }) {
+function Item({ to, label, icon: Icon, accent }) {
   return (
     <NavLink
       to={to}
@@ -41,8 +46,17 @@ function Item({ to, label, icon: Icon }) {
           {isActive && (
             <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-[3px] h-[3px] rounded-full bg-warm" />
           )}
-          <Icon size={16} strokeWidth={1.75} />
+          <Icon
+            size={16}
+            strokeWidth={1.75}
+            className={accent ? 'text-warm' : ''}
+          />
           <span>{label}</span>
+          {accent && (
+            <span className="ml-auto text-[9px] uppercase tracking-[0.1em] text-warm font-semibold">
+              IA
+            </span>
+          )}
         </>
       )}
     </NavLink>
@@ -78,6 +92,13 @@ export default function Sidebar() {
           Canales
         </div>
         {channels.map((c) => (
+          <Item key={c.to} {...c} />
+        ))}
+
+        <div className="px-6 mt-6 mb-2 text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium">
+          Crecimiento
+        </div>
+        {growth.map((c) => (
           <Item key={c.to} {...c} />
         ))}
 

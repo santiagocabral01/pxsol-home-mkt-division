@@ -171,6 +171,269 @@
   animation: hp-pulse 1.4s ease-in-out infinite;
 }
 
+/* ---------- Demo player (video-style UI walkthrough) ---------- */
+@keyframes hpd-scene-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hpd-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.82) translateY(8px);
+  }
+  60% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes hpd-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hpd-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes hpd-ripple {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@keyframes hpd-rec {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes hpd-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hpd-player-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes hpd-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Camera punch-in toward a focal point (origin set inline per scene). */
+@keyframes hpd-punch-in {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(var(--punch-scale, 1.18));
+  }
+}
+
+/* Slow Ken-Burns drift for hero imagery — gives scenes a "filmed" feel. */
+@keyframes hpd-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+
+/* Warm focus ring that pulses on the button about to be clicked. */
+@keyframes hpd-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 132, 90, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(212, 132, 90, 0.22);
+  }
+}
+
+/* Snappier, more energetic 3D scene entrance for the marketing reel.
+   Settles perfectly flat (rotateX 0) before targets are measured. */
+@keyframes hpd-scene-in {
+  0% {
+    opacity: 0;
+    transform: perspective(1600px) rotateX(7deg) translateY(26px) scale(0.96);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1600px) rotateX(0deg) translateY(0) scale(1);
+  }
+}
+
+/* 3D card flip-in for individual elements. */
+@keyframes hpd-flip-in {
+  0% {
+    opacity: 0;
+    transform: perspective(1100px) rotateX(-20deg) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1100px) rotateX(0deg) translateY(0);
+  }
+}
+
+/* Gentle idle 3D tilt for showcase elements (no measured targets inside). */
+@keyframes hpd-tilt {
+  0%,
+  100% {
+    transform: perspective(1300px) rotateY(-7deg) rotateX(3deg);
+  }
+  50% {
+    transform: perspective(1300px) rotateY(7deg) rotateX(-3deg);
+  }
+}
+.hpd-tilt {
+  animation: hpd-tilt 8s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* Kinetic caption — words punch up from below. */
+@keyframes hpd-kinetic {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Light sheen sweeping across a surface. */
+@keyframes hpd-shine {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+
+/* Slow animated background glow behind the screen. */
+@keyframes hpd-bg-pan {
+  0%,
+  100% {
+    transform: translate3d(-4%, -2%, 0) scale(1.05);
+  }
+  50% {
+    transform: translate3d(4%, 3%, 0) scale(1.15);
+  }
+}
+
+/* Sparks flying out from a click. */
+@keyframes hpd-spark {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--sx), var(--sy)) scale(0.3);
+  }
+}
+
+/* Overshooting pop for stat callouts. */
+@keyframes hpd-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(10px);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.12) translateY(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.hpd-scene-in {
+  animation: hpd-scene-in 0.55s cubic-bezier(.2,.85,.25,1) both;
+}
+.hpd-blink {
+  animation: hpd-blink 0.9s step-end infinite;
+}
+.hpd-kenburns {
+  animation: hpd-kenburns 9s ease-out both;
+}
+.hpd-shine {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hpd-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  animation: hpd-shine 2.6s ease-in-out infinite;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   ArrowRight,
@@ -13,10 +14,12 @@ import {
   Zap,
   Eye,
   Compass,
+  Play,
 } from 'lucide-react'
 import Headline from '../components/ui/Headline'
 import Pill from '../components/ui/Pill'
 import Button from '../components/ui/Button'
+import DemoPlayer from '../components/DemoPlayer'
 import { hotelImages } from '../data/hotel'
 
 function Logo() {
@@ -261,10 +264,14 @@ function ChannelCard({ icon: Icon, title, body, items }) {
 
 export default function Landing() {
   const navigate = useNavigate()
+  const [demoOpen, setDemoOpen] = useState(false)
   const start = () => navigate('/app/onboarding')
 
   return (
     <div className="min-h-screen">
+      {demoOpen && (
+        <DemoPlayer onClose={() => setDemoOpen(false)} onStart={start} />
+      )}
       {/* TOP NAV */}
       <header className="sticky top-0 z-40 backdrop-blur-md bg-[rgba(250,250,248,0.7)] border-b border-border/60">
         <div className="max-w-[1180px] mx-auto px-8 h-16 flex items-center justify-between">
@@ -319,8 +326,13 @@ export default function Landing() {
             <Button size="lg" onClick={start} className="px-7">
               Comenzar gratis <ArrowRight size={16} />
             </Button>
-            <Button variant="secondary" size="lg" onClick={start} className="px-6">
-              Ver demo de 2 minutos
+            <Button
+              variant="secondary"
+              size="lg"
+              onClick={() => setDemoOpen(true)}
+              className="px-6"
+            >
+              <Play size={14} fill="currentColor" /> Ver demo · 45 seg
             </Button>
           </div>
 
