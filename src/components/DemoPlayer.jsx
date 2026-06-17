@@ -39,6 +39,9 @@ const easeOutBack = (x) => {
   const c3 = c1 + 1
   return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2)
 }
+// Gentler overshoot for cursor travel — lands a touch past the target then settles.
+const easeOutBackMild = (x, s = 0.9) =>
+  1 + (s + 1) * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2)
 const lerp = (a, b, e) => a + (b - a) * e
 
 // Entrance animation length — measure targets only after it settles, or the
@@ -106,8 +109,40 @@ function useFocus(rootRef, targetRef, t, opts) {
   if (geo) {
     const sx = start.xp * geo.w
     const sy = start.yp * geo.h
-    const e = easeInOut(clamp01((t - moveAt) / travel))
-    cursor = { x: lerp(sx, geo.cx, e), y: lerp(sy, geo.cy, e) }
+    const ex = geo.cx
+    const ey = geo.cy
+
+    const p = clamp01((t - moveAt) / travel)
+    // Eased parameter with a soft overshoot so the pointer settles like a hand.
+    const q = easeOutBackMild(p)
+
+    // Curved path: quadratic bézier with a control point bowed off the straight
+    // line (always lifted upward), so motion arcs instead of going ruler-straight.
+    const dx = ex - sx
+    const dy = ey - sy
+    const dist = Math.hypot(dx, dy) || 1
+    let nx = -dy / dist
+    let ny = dx / dist
+    const arcMag = Math.min(70, dist * 0.2)
+    const midx = (sx + ex) / 2
+    const midy = (sy + ey) / 2
+    if (midy + ny * arcMag > midy) {
+      nx = -nx
+      ny = -ny
+    }
+    const cpx = midx + nx * arcMag
+    const cpy = midy + ny * arcMag
+    const omq = 1 - q
+    let x = omq * omq * sx + 2 * omq * q * cpx + q * q * ex
+    let y = omq * omq * sy + 2 * omq * q * cpy + q * q * ey
+
+    // Micro tremor + idle breathing — strongest while still, fading to zero as
+    // the cursor closes in on the target (and after it clicks).
+    const fade = p <= 0 ? 1 : 1 - easeOut(p)
+    x += Math.sin(t * 0.0152 + 1.3) * 1.7 * fade
+    y += Math.cos(t * 0.0119) * 1.5 * fade
+
+    cursor = { x, y }
     zoom = { scale: zScale, ox: geo.oxp, oy: geo.oyp }
   }
   const clicking = t >= clickAt && t < clickAt + 340
@@ -483,7 +518,9 @@ function SceneOnboarding({ t }) {
           <div className="absolute inset-0 flex items-center justify-center p-6">
             <div className="hp-card w-full max-w-[430px] flex flex-col overflow-hidden">
               <ChatHeader status="en línea" />
-              <div className="px-3.5 py-3 space-y-2.5">
+              {/* fixed height so streaming bubbles don't shift the CTA the
+                  cursor is aiming at */}
+              <div className="px-3.5 py-3 space-y-2.5 h-[300px] overflow-hidden">
                 <DemoBubble
                   role="bot"
                   t={t}
@@ -534,7 +571,9 @@ function SceneBrandDNA({ t }) {
           <div className="absolute inset-0 flex items-center justify-center p-6">
             <div className="hp-card w-full max-w-[460px] flex flex-col overflow-hidden">
               <ChatHeader status="presentando tu marca" />
-              <div className="px-3.5 py-3 space-y-2.5">
+              {/* fixed height so the streaming palette/typography reveal
+                  doesn't shift the CTA the cursor is aiming at */}
+              <div className="px-3.5 py-3 space-y-2.5 h-[360px] overflow-hidden">
                 <DemoBubble
                   role="bot"
                   t={t}
