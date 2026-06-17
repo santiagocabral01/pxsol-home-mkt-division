@@ -15,6 +15,7 @@ import Summary from './screens/channels/Summary'
 import Settings from './screens/channels/Settings'
 import SeoGeoLayout from './screens/seoGeo/SeoGeoLayout'
 import Dashboard from './screens/seoGeo/Dashboard'
+import Assistant from './screens/seoGeo/Assistant'
 import GeoTracker from './screens/seoGeo/GeoTracker'
 import SeoAnalytics from './screens/seoGeo/SeoAnalytics'
 import Sources from './screens/seoGeo/Sources'
@@ -42,6 +43,7 @@ export default function App() {
               <Route path="email" element={<EmailMarketing />} />
               <Route path="seo-geo" element={<SeoGeoLayout />}>
                 <Route index element={<Dashboard />} />
+                <Route path="asistente" element={<Assistant />} />
                 <Route path="geo-tracker" element={<GeoTracker />} />
                 <Route path="seo" element={<SeoAnalytics />} />
                 <Route path="fuentes" element={<Sources />} />

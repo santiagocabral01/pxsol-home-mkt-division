@@ -5,7 +5,6 @@ import {
   RotateCcw,
   X,
   ArrowRight,
-  ArrowLeft,
   Check,
   Sparkles,
   Loader2,
@@ -233,6 +232,75 @@ function typed(text, t, { start = 0, perChar = 55 } = {}) {
 }
 
 /* ---------------------------------------------------------------- *
+ *  Chat primitives for the conversational scenes — clock-driven so
+ *  they type out and pause in lockstep with the rest of the reel.
+ * ---------------------------------------------------------------- */
+function DemoAvatar({ role }) {
+  if (role === 'user') {
+    return (
+      <span className="w-6 h-6 rounded-full bg-pill text-ink-soft flex items-center justify-center text-[9px] font-medium flex-shrink-0">
+        Tú
+      </span>
+    )
+  }
+  return (
+    <span
+      className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
+      style={{ background: 'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)' }}
+    >
+      <Sparkles size={11} className="text-white" strokeWidth={2.4} />
+    </span>
+  )
+}
+
+function DemoBubble({ role, t, startAt, text, perChar = 30, children }) {
+  if (t < startAt) return null
+  const isUser = role === 'user'
+  const shown = text != null ? typed(text, t, { start: startAt, perChar }) : ''
+  const typing = text != null && shown.length < text.length
+  return (
+    <div
+      className={`flex items-end gap-2 ${isUser ? 'flex-row-reverse' : ''}`}
+      style={{ animation: 'hpd-pop 0.4s ease-out both' }}
+    >
+      <DemoAvatar role={role} />
+      <div
+        className={`max-w-[82%] rounded-2xl px-3 py-1.5 text-[11px] leading-snug ${
+          isUser
+            ? 'bg-ink text-white rounded-br-sm'
+            : 'bg-card border border-border text-ink rounded-bl-sm shadow-card'
+        }`}
+      >
+        {shown}
+        {typing && (
+          <span className="hpd-blink ml-0.5 w-[2px] h-[11px] bg-current inline-block align-middle" />
+        )}
+        {children}
+      </div>
+    </div>
+  )
+}
+
+function ChatHeader({ status }) {
+  return (
+    <div className="flex items-center gap-2 px-3.5 py-2 border-b border-border bg-surface-hover flex-shrink-0">
+      <span
+        className="w-6 h-6 rounded-full flex items-center justify-center"
+        style={{ background: 'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)' }}
+      >
+        <Sparkles size={11} className="text-white" strokeWidth={2.4} />
+      </span>
+      <div className="leading-tight">
+        <div className="text-[11px] font-medium text-ink">Marina</div>
+        <div className="text-[9px] text-green flex items-center gap-1">
+          <span className="w-1.5 h-1.5 rounded-full bg-green" /> {status}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ---------------------------------------------------------------- *
  *  App chrome — mirrors the real onboarding/brand/generating header.
  * ---------------------------------------------------------------- */
 function AppHeader({ step }) {
@@ -400,15 +468,12 @@ function SceneOnboarding({ t }) {
   const rootRef = useRef(null)
   const ctaRef = useRef(null)
   const focus = useFocus(rootRef, ctaRef, t, {
-    start: { xp: 0.26, yp: 0.32 },
-    moveAt: 3000,
-    travel: 1000,
+    start: { xp: 0.5, yp: 0.52 },
+    moveAt: 3300,
+    travel: 800,
     clickAt: 4200,
-    scale: 1.2,
+    scale: 1.16,
   })
-  const name = typed('Hotel Azul Marino', t, { start: 350, perChar: 50 })
-  const city = typed('Cartagena de Indias', t, { start: 1450, perChar: 40 })
-  const shots = [hotelImages.facade, hotelImages.pool, hotelImages.room2, hotelImages.terrace]
 
   return (
     <div className="absolute inset-0 flex flex-col bg-bg">
@@ -416,48 +481,31 @@ function SceneOnboarding({ t }) {
       <div ref={rootRef} className="relative flex-1 min-h-0">
         <ZoomLayer zoom={focus.zoom}>
           <div className="absolute inset-0 flex items-center justify-center p-6">
-            <div className="hp-card p-7 w-full max-w-[440px]">
-              <div className="text-[9px] uppercase tracking-[0.18em] text-warm mb-1 font-medium">
-                ✦ Paso 1 — Contanos sobre tu hotel
+            <div className="hp-card w-full max-w-[430px] flex flex-col overflow-hidden">
+              <ChatHeader status="en línea" />
+              <div className="px-3.5 py-3 space-y-2.5">
+                <DemoBubble
+                  role="bot"
+                  t={t}
+                  startAt={150}
+                  text="¡Hola! Soy Marina. ¿Cómo se llama tu hotel?"
+                />
+                <DemoBubble role="user" t={t} startAt={1250} text="Hotel Azul Marino" />
+                <DemoBubble role="bot" t={t} startAt={2150} text="Genial. ¿Y dónde queda?" />
+                <DemoBubble role="user" t={t} startAt={2900} text="Cartagena, Colombia" />
               </div>
-              <div className="font-display text-[23px] leading-tight mb-5">
-                Construimos tu presencia en cinco minutos.
-              </div>
-
-              <label className="text-[11px] text-ink-soft font-medium">Nombre del hotel</label>
-              <div className="hp-input mt-1.5 mb-4 flex items-center">
-                {name}
-                {name.length < 'Hotel Azul Marino'.length && (
-                  <span className="hpd-blink ml-0.5 w-[2px] h-[15px] bg-ink inline-block" />
-                )}
-              </div>
-
-              <label className="text-[11px] text-ink-soft font-medium">Ciudad</label>
-              <div className="hp-input mt-1.5 mb-4 flex items-center">
-                {city}
-                {t > 1450 && city.length < 'Cartagena de Indias'.length && (
-                  <span className="hpd-blink ml-0.5 w-[2px] h-[15px] bg-ink inline-block" />
-                )}
-              </div>
-
-              <label className="text-[11px] text-ink-soft font-medium">Imágenes del hotel</label>
-              <div className="grid grid-cols-4 gap-2 mt-1.5 mb-6">
-                {shots.map((s, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square rounded-md overflow-hidden border border-border"
-                    style={{ animation: `hpd-pop 0.4s ease-out ${2.4 + i * 0.16}s both` }}
+              <div className="px-3.5 pb-3 pt-1">
+                <span ref={ctaRef} className="block">
+                  <CtaButton
+                    clicked={focus.clicked}
+                    clicking={focus.clicking}
+                    shine
+                    className="w-full h-9 text-[12px]"
                   >
-                    <img src={s} alt="" className="w-full h-full object-cover" />
-                  </div>
-                ))}
+                    Analizar mi hotel <ArrowRight size={13} />
+                  </CtaButton>
+                </span>
               </div>
-
-              <span ref={ctaRef} className="block">
-                <CtaButton clicked={focus.clicked} clicking={focus.clicking} className="w-full">
-                  Analizar mi hotel <ArrowRight size={14} />
-                </CtaButton>
-              </span>
             </div>
           </div>
           <CursorView cursor={focus.cursor} clicking={focus.clicking} />
@@ -471,11 +519,11 @@ function SceneBrandDNA({ t }) {
   const rootRef = useRef(null)
   const ctaRef = useRef(null)
   const focus = useFocus(rootRef, ctaRef, t, {
-    start: { xp: 0.3, yp: 0.4 },
-    moveAt: 2700,
+    start: { xp: 0.5, yp: 0.5 },
+    moveAt: 2900,
     travel: 1050,
     clickAt: 4000,
-    scale: 1.28, // the climactic "Generar" punch
+    scale: 1.24, // the climactic "Generar" punch
   })
 
   return (
@@ -483,71 +531,71 @@ function SceneBrandDNA({ t }) {
       <AppHeader step={2} />
       <div ref={rootRef} className="relative flex-1 min-h-0">
         <ZoomLayer zoom={focus.zoom}>
-          <div className="absolute inset-0 flex flex-col justify-center px-7 py-5">
-            <div className="mb-4" style={{ animation: 'hpd-rise 0.5s ease-out both' }}>
-              <span className="hp-pill" style={{ background: '#f7e7dc', color: '#d4845a' }}>
-                ✦ Paso 2 — Brand DNA generado
-              </span>
-              <div className="font-display text-[24px] leading-tight mt-2">
-                Esta es la <span className="hp-underline">identidad</span> que detectamos.
-              </div>
-            </div>
-
-            <div
-              className="hp-card p-5 grid grid-cols-2 gap-5"
-              style={{ animation: 'hpd-flip-in 0.55s cubic-bezier(.2,.85,.25,1) both' }}
-            >
-              <div>
-                <div className="text-[9px] uppercase tracking-[0.15em] text-ink-mute mb-2.5">
-                  Paleta detectada
-                </div>
-                <div className="flex gap-2.5">
-                  {brandDNA.palette.map((c, i) => (
-                    <div
-                      key={c.hex}
-                      className="flex-1 text-center"
-                      style={{ animation: `hpd-pop 0.4s ease-out ${0.3 + i * 0.12}s both` }}
-                    >
-                      <div className="h-11 rounded-lg mb-1.5 shadow-card" style={{ background: c.hex }} />
-                      <div className="font-mono text-[8px] text-ink uppercase">{c.hex}</div>
-                      <div className="text-[8px] text-ink-soft leading-tight">{c.name}</div>
+          <div className="absolute inset-0 flex items-center justify-center p-6">
+            <div className="hp-card w-full max-w-[460px] flex flex-col overflow-hidden">
+              <ChatHeader status="presentando tu marca" />
+              <div className="px-3.5 py-3 space-y-2.5">
+                <DemoBubble
+                  role="bot"
+                  t={t}
+                  startAt={150}
+                  text="Terminé de analizar tu hotel 🎨"
+                />
+                <DemoBubble
+                  role="bot"
+                  t={t}
+                  startAt={1200}
+                  text="Esta es la identidad que detecté:"
+                >
+                  {t > 1850 && (
+                    <div className="mt-2.5 space-y-2.5">
+                      <div className="flex gap-1.5">
+                        {brandDNA.palette.map((c, i) => (
+                          <div
+                            key={c.hex}
+                            className="flex-1 text-center"
+                            style={{ animation: `hpd-pop 0.4s ease-out ${i * 0.1}s both` }}
+                          >
+                            <div
+                              className="h-7 rounded-md shadow-card"
+                              style={{ background: c.hex }}
+                            />
+                            <div className="font-mono text-[7px] text-ink uppercase mt-0.5">
+                              {c.hex}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div
+                        className="flex items-center gap-2.5 pt-1"
+                        style={{ animation: 'hpd-pop 0.4s ease-out 0.4s both' }}
+                      >
+                        <span className="font-display text-[26px] leading-none">Aa</span>
+                        <div className="leading-tight">
+                          <div className="text-[10px] text-ink">
+                            {brandDNA.typography.display}
+                          </div>
+                          <div className="text-[9px] text-ink-soft italic">
+                            “{brandDNA.voice}”
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  ))}
-                </div>
+                  )}
+                </DemoBubble>
               </div>
-              <div style={{ animation: 'hpd-pop 0.45s ease-out 0.35s both' }}>
-                <div className="text-[9px] uppercase tracking-[0.15em] text-ink-mute mb-2.5">
-                  Tipografía
-                </div>
-                <div className="flex items-baseline gap-3">
-                  <span className="font-display text-[34px] leading-none">Aa</span>
-                  <div>
-                    <div className="text-[12px] text-ink">{brandDNA.typography.display}</div>
-                    <div className="text-[10px] text-ink-soft mt-0.5">
-                      Cuerpo · {brandDNA.typography.body}
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-3 pt-3 border-t border-border">
-                  <div className="text-[9px] uppercase tracking-[0.15em] text-ink-mute mb-1">
-                    Tono de voz
-                  </div>
-                  <div className="font-display text-[14px] leading-snug text-ink">
-                    “{brandDNA.voice}”
-                  </div>
-                </div>
+              <div className="px-3.5 pb-3 pt-1">
+                <span ref={ctaRef} className="block">
+                  <CtaButton
+                    clicked={focus.clicked}
+                    clicking={focus.clicking}
+                    shine
+                    className="w-full h-9 text-[12px]"
+                  >
+                    Generar presencia completa <ArrowRight size={13} />
+                  </CtaButton>
+                </span>
               </div>
-            </div>
-
-            <div className="flex items-center justify-between mt-5">
-              <button className="inline-flex items-center gap-1.5 text-[12px] text-ink-soft h-10 px-3">
-                <ArrowLeft size={13} /> Volver
-              </button>
-              <span ref={ctaRef} className="inline-block">
-                <CtaButton clicked={focus.clicked} clicking={focus.clicking} shine>
-                  Generar presencia completa <ArrowRight size={15} />
-                </CtaButton>
-              </span>
             </div>
           </div>
           <CursorView cursor={focus.cursor} clicking={focus.clicking} />
@@ -1039,8 +1087,8 @@ export default function DemoPlayer({ onClose, onStart }) {
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
       style={{
-        background: 'rgba(15,15,18,0.78)',
-        backdropFilter: 'blur(6px)',
+        background: 'rgba(10,10,12,0.95)',
+        backdropFilter: 'blur(12px)',
         animation: 'hpd-backdrop-in 0.25s ease-out',
       }}
       onClick={onClose}

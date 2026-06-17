@@ -1,10 +1,20 @@
 import { useState } from 'react'
-import { Download, Pencil, Sparkles, Loader2, Camera, Users } from 'lucide-react'
+import {
+  Download,
+  Pencil,
+  Sparkles,
+  Loader2,
+  Camera,
+  Users,
+  Smartphone,
+  EyeOff,
+} from 'lucide-react'
 import ChannelHeader from '../../components/ChannelHeader'
 import Button from '../../components/ui/Button'
 import Pill from '../../components/ui/Pill'
 import Modal from '../../components/ui/Modal'
 import { Select } from '../../components/ui/Field'
+import SocialPhonePreview from '../../components/SocialPhonePreview'
 import { socialPosts, campaignOptions } from '../../data/hotel'
 
 const networks = [
@@ -76,6 +86,7 @@ export default function SocialMedia() {
   const [campaign, setCampaign] = useState(campaignOptions[0])
   const [generating, setGenerating] = useState(false)
   const [modal, setModal] = useState(null)
+  const [showPhone, setShowPhone] = useState(true)
 
   const posts = socialPosts[network] || []
   const total = Object.values(socialPosts).reduce((a, p) => a + p.length, 0)
@@ -158,24 +169,59 @@ export default function SocialMedia() {
             </button>
           )
         })}
+        {!showPhone && (
+          <button
+            onClick={() => setShowPhone(true)}
+            className="ml-auto flex items-center gap-1.5 px-3 py-1.5 text-[12px] text-ink-soft hover:text-ink rounded-md hover:bg-surface-hover transition"
+          >
+            <Smartphone size={14} /> Ver previsualización
+          </button>
+        )}
       </div>
 
-      <div className="grid grid-cols-3 gap-5">
-        {posts.map((p, i) => (
-          <PostCard
-            key={i}
-            post={p}
-            onAction={(a) =>
-              setModal({
-                title: a === 'edit' ? 'Editor de assets' : '✓ Descarga iniciada',
-                body:
-                  a === 'edit'
-                    ? 'En la versión completa abrimos el editor visual con tu marca aplicada, listo para tweaks finales.'
-                    : 'Generamos un .zip con la pieza en todas las variantes (PNG, JPG, formato vertical y cuadrado).',
-              })
-            }
-          />
-        ))}
+      <div className="flex gap-8 items-start">
+        <div
+          className={`grid gap-5 flex-1 min-w-0 ${
+            showPhone ? 'grid-cols-2 2xl:grid-cols-3' : 'grid-cols-3'
+          }`}
+        >
+          {posts.map((p, i) => (
+            <PostCard
+              key={i}
+              post={p}
+              onAction={(a) =>
+                setModal({
+                  title: a === 'edit' ? 'Editor de assets' : '✓ Descarga iniciada',
+                  body:
+                    a === 'edit'
+                      ? 'En la versión completa abrimos el editor visual con tu marca aplicada, listo para tweaks finales.'
+                      : 'Generamos un .zip con la pieza en todas las variantes (PNG, JPG, formato vertical y cuadrado).',
+                })
+              }
+            />
+          ))}
+        </div>
+
+        {showPhone && (
+          <aside className="hidden lg:block flex-shrink-0 w-[320px] sticky top-6 hp-fade-in">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-1.5 text-[12px] text-ink-soft">
+                <Smartphone size={14} className="text-warm" />
+                Previsualización · {network}
+              </div>
+              <button
+                onClick={() => setShowPhone(false)}
+                className="flex items-center gap-1.5 px-2.5 h-7 text-[11px] text-ink-soft hover:text-ink rounded-md hover:bg-surface-hover transition"
+              >
+                <EyeOff size={13} /> Ocultar
+              </button>
+            </div>
+            <SocialPhonePreview network={network} />
+            <p className="mt-3 text-[11px] text-ink-mute text-center leading-relaxed">
+              Tocá Feed / Reels y cualquier publicación para previsualizarla.
+            </p>
+          </aside>
+        )}
       </div>
 
       <Modal

@@ -171,6 +171,194 @@
   animation: hp-pulse 1.4s ease-in-out infinite;
 }
 
+/* ---------- Landing page motion ---------- */
+
+/* Scroll-triggered reveal. Element starts hidden + offset, and the
+   `is-visible` class (added by IntersectionObserver) eases it into place.
+   Stagger children with an inline `--hp-delay`. */
+.hp-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.85, 0.25, 1),
+    transform 0.7s cubic-bezier(0.22, 0.85, 0.25, 1);
+  transition-delay: var(--hp-delay, 0s);
+  will-change: opacity, transform;
+}
+.hp-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Reveal variants — direction the element travels in from. */
+.hp-reveal-left {
+  transform: translateX(-32px);
+}
+.hp-reveal-right {
+  transform: translateX(32px);
+}
+.hp-reveal-scale {
+  transform: scale(0.94);
+}
+.hp-reveal-left.is-visible,
+.hp-reveal-right.is-visible,
+.hp-reveal-scale.is-visible {
+  transform: none;
+}
+
+/* Staggered hero entrance — each child rises a beat after the previous. */
+@keyframes hp-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hp-stagger > * {
+  opacity: 0;
+  animation: hp-rise-in 0.7s cubic-bezier(0.22, 0.85, 0.25, 1) both;
+  animation-delay: var(--hp-delay, 0s);
+}
+.hp-stagger > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.hp-stagger > *:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.hp-stagger > *:nth-child(3) {
+  animation-delay: 0.28s;
+}
+.hp-stagger > *:nth-child(4) {
+  animation-delay: 0.42s;
+}
+.hp-stagger > *:nth-child(5) {
+  animation-delay: 0.55s;
+}
+
+/* Gentle perpetual float for the hero callout chips. */
+@keyframes hp-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+.hp-float {
+  animation: hp-float 5s ease-in-out infinite;
+}
+.hp-float-slow {
+  animation: hp-float 7s ease-in-out infinite;
+}
+
+/* Lift + warm glow on interactive cards. */
+.hp-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 0.85, 0.25, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 0.85, 0.25, 1);
+}
+.hp-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Subtle nudge on a button's arrow when its row is hovered. */
+.hp-arrow {
+  transition: transform 0.25s ease;
+}
+.group:hover .hp-arrow {
+  transform: translateX(3px);
+}
+
+/* ---------- Chatbot flow ---------- */
+
+/* Each chat bubble eases up + fades as it enters the conversation. */
+@keyframes hp-bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.hp-bubble-in {
+  animation: hp-bubble-in 0.42s cubic-bezier(0.22, 0.85, 0.25, 1) both;
+}
+
+/* Typewriter caret blinking at the end of an in-progress message. */
+@keyframes hp-caret {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.hp-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: hp-caret 0.9s step-end infinite;
+}
+
+/* Three-dot "typing…" indicator. */
+@keyframes hp-dot {
+  0%,
+  60%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+.hp-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 99px;
+  background: currentColor;
+  animation: hp-dot 1.2s ease-in-out infinite;
+}
+
+/* Honor users who prefer reduced motion — kill transforms & loops. */
+@media (prefers-reduced-motion: reduce) {
+  .hp-reveal,
+  .hp-reveal-left,
+  .hp-reveal-right,
+  .hp-reveal-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hp-stagger > * {
+    opacity: 1;
+    animation: none;
+  }
+  .hp-float,
+  .hp-float-slow,
+  .hp-fade-in {
+    animation: none;
+  }
+  .hp-lift:hover {
+    transform: none;
+  }
+  .hp-bubble-in {
+    animation: none;
+  }
+}
+
 /* ---------- Demo player (video-style UI walkthrough) ---------- */
 @keyframes hpd-scene-in {
   from {

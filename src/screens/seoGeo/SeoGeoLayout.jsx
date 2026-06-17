@@ -7,10 +7,12 @@ import {
   Wand2,
   Lightbulb,
   FileBarChart2,
+  Sparkles,
 } from 'lucide-react'
 
 const subnav = [
   { to: '/app/hub/seo-geo', end: true, label: 'Dashboard', icon: Gauge },
+  { to: '/app/hub/seo-geo/asistente', label: 'Asistente IA', icon: Sparkles },
   { to: '/app/hub/seo-geo/geo-tracker', label: 'GEO Tracker', icon: Bot },
   { to: '/app/hub/seo-geo/seo', label: 'SEO Analytics', icon: TrendingUp },
   { to: '/app/hub/seo-geo/fuentes', label: 'Fuentes', icon: Quote },

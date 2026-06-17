@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import {
   ArrowRight,
@@ -21,6 +21,48 @@ import Pill from '../components/ui/Pill'
 import Button from '../components/ui/Button'
 import DemoPlayer from '../components/DemoPlayer'
 import { hotelImages } from '../data/hotel'
+
+/* Reveals its children when they scroll into view. `delay` staggers the
+   entrance; `variant` picks the travel direction (up | left | right | scale). */
+function Reveal({
+  children,
+  className = '',
+  variant = '',
+  delay = 0,
+  as: Tag = 'div',
+  style,
+}) {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  const variantClass = variant ? `hp-reveal-${variant}` : ''
+
+  return (
+    <Tag
+      ref={ref}
+      className={`hp-reveal ${variantClass} ${visible ? 'is-visible' : ''} ${className}`}
+      style={{ ...style, ...(delay ? { '--hp-delay': `${delay}ms` } : null) }}
+    >
+      {children}
+    </Tag>
+  )
+}
 
 function Logo() {
   return (
@@ -180,7 +222,7 @@ function ProductScreenshot() {
 
       {/* floating chips */}
       <div
-        className="absolute -top-4 -left-8 hp-card px-4 py-2.5 flex items-center gap-2"
+        className="absolute -top-4 -left-8 hp-card px-4 py-2.5 flex items-center gap-2 hp-float"
         style={{ boxShadow: '0 12px 32px rgba(0,0,0,0.12)' }}
       >
         <span className="w-6 h-6 rounded-full bg-green-soft text-green flex items-center justify-center">
@@ -195,7 +237,7 @@ function ProductScreenshot() {
       </div>
 
       <div
-        className="absolute -bottom-6 -right-6 hp-card px-4 py-2.5 flex items-center gap-2"
+        className="absolute -bottom-6 -right-6 hp-card px-4 py-2.5 flex items-center gap-2 hp-float-slow"
         style={{ boxShadow: '0 12px 32px rgba(0,0,0,0.12)' }}
       >
         <span className="w-6 h-6 rounded-full bg-warm-soft text-warm flex items-center justify-center">
@@ -227,12 +269,16 @@ function Stat({ value, label }) {
 
 function StepCard({ n, icon: Icon, title, body }) {
   return (
-    <div className="hp-card p-7 relative overflow-hidden group transition-all hover:shadow-[var(--shadow-card-hover)]">
+    <div className="hp-card hp-lift p-7 relative overflow-hidden group">
       <div className="flex items-start justify-between mb-5">
         <div className="font-mono text-[11px] text-ink-mute tracking-wider">
           0{n}
         </div>
-        <Icon size={20} className="text-warm" strokeWidth={1.5} />
+        <Icon
+          size={20}
+          className="text-warm transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
+          strokeWidth={1.5}
+        />
       </div>
       <div className="font-display text-[22px] mb-2 leading-tight">{title}</div>
       <p className="text-[13px] text-ink-soft leading-relaxed">{body}</p>
@@ -242,8 +288,12 @@ function StepCard({ n, icon: Icon, title, body }) {
 
 function ChannelCard({ icon: Icon, title, body, items }) {
   return (
-    <div className="hp-card p-6 transition-all hover:shadow-[var(--shadow-card-hover)]">
-      <Icon size={18} className="text-warm mb-4" strokeWidth={1.75} />
+    <div className="hp-card hp-lift p-6 group">
+      <Icon
+        size={18}
+        className="text-warm mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
+        strokeWidth={1.75}
+      />
       <div className="font-display text-[20px] mb-1.5 leading-tight">
         {title}
       </div>
@@ -273,7 +323,11 @@ export default function Landing() {
         <DemoPlayer onClose={() => setDemoOpen(false)} onStart={start} />
       )}
       {/* TOP NAV */}
-      <header className="sticky top-0 z-40 backdrop-blur-md bg-[rgba(250,250,248,0.7)] border-b border-border/60">
+      <header
+        className={`sticky top-0 z-40 backdrop-blur-md bg-[rgba(250,250,248,0.7)] border-b border-border/60 transition-opacity ${
+          demoOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
+      >
         <div className="max-w-[1180px] mx-auto px-8 h-16 flex items-center justify-between">
           <Logo />
           <nav className="hidden md:flex items-center gap-8 text-[13px] text-ink-soft">
@@ -303,7 +357,7 @@ export default function Landing() {
 
       {/* HERO */}
       <section className="relative max-w-[1180px] mx-auto px-8 pt-24 pb-32 text-center">
-        <div className="hp-fade-in">
+        <div className="hp-stagger">
           <Pill tone="warm" className="mb-6">
             <Sparkles size={11} /> Demo en vivo · 100% editable
           </Pill>
@@ -323,8 +377,8 @@ export default function Landing() {
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-3 flex-wrap">
-            <Button size="lg" onClick={start} className="px-7">
-              Comenzar gratis <ArrowRight size={16} />
+            <Button size="lg" onClick={start} className="px-7 group">
+              Comenzar gratis <ArrowRight size={16} className="hp-arrow" />
             </Button>
             <Button
               variant="secondary"
@@ -350,18 +404,24 @@ export default function Landing() {
         </div>
 
         {/* product screenshot */}
-        <div className="mt-20 max-w-[1080px] mx-auto hp-fade-in">
+        <Reveal variant="scale" delay={250} className="mt-20 max-w-[1080px] mx-auto">
           <ProductScreenshot />
-        </div>
+        </Reveal>
       </section>
 
       {/* TRUST BAR */}
       <section className="border-y border-border bg-[rgba(255,255,255,0.55)]">
         <div className="max-w-[1180px] mx-auto px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-          <Stat value="128" label="Hoteles activos en LATAM" />
-          <Stat value="6 min" label="De onboarding al primer post" />
-          <Stat value="+28%" label="Más reservas directas" />
-          <Stat value="4.8 / 5" label="Rating de hoteleros" />
+          {[
+            { value: '128', label: 'Hoteles activos en LATAM' },
+            { value: '6 min', label: 'De onboarding al primer post' },
+            { value: '+28%', label: 'Más reservas directas' },
+            { value: '4.8 / 5', label: 'Rating de hoteleros' },
+          ].map((s, i) => (
+            <Reveal key={s.label} delay={i * 110}>
+              <Stat value={s.value} label={s.label} />
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -370,7 +430,7 @@ export default function Landing() {
         id="cómo-funciona"
         className="max-w-[1180px] mx-auto px-8 py-28"
       >
-        <div className="text-center mb-14">
+        <Reveal className="text-center mb-14">
           <Pill tone="warm" className="mb-4">
             ✦ Cómo funciona
           </Pill>
@@ -385,27 +445,33 @@ export default function Landing() {
             Nada de templates genéricos. Lo que generamos sale de tu hotel —
             de tus fotos, tu historia y tu propuesta.
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid md:grid-cols-3 gap-5">
-          <StepCard
-            n={1}
-            icon={Eye}
-            title="Contanos tu hotel."
-            body="Tres minutos de formulario: nombre, ubicación, fotos, tipos de habitación. Eso es todo."
-          />
-          <StepCard
-            n={2}
-            icon={Zap}
-            title="Generamos tu Brand DNA."
-            body="Identificamos paleta, tipografía, tono de voz y propuesta de valor. Editás lo que no se sienta tuyo."
-          />
-          <StepCard
-            n={3}
-            icon={Compass}
-            title="Activás cada canal."
-            body="Sitio, redes, Google, Booking, email. Todo creado en menos de un minuto y con tu identidad coherente."
-          />
+          {[
+            {
+              n: 1,
+              icon: Eye,
+              title: 'Contanos tu hotel.',
+              body: 'Tres minutos de formulario: nombre, ubicación, fotos, tipos de habitación. Eso es todo.',
+            },
+            {
+              n: 2,
+              icon: Zap,
+              title: 'Generamos tu Brand DNA.',
+              body: 'Identificamos paleta, tipografía, tono de voz y propuesta de valor. Editás lo que no se sienta tuyo.',
+            },
+            {
+              n: 3,
+              icon: Compass,
+              title: 'Activás cada canal.',
+              body: 'Sitio, redes, Google, Booking, email. Todo creado en menos de un minuto y con tu identidad coherente.',
+            },
+          ].map((s, i) => (
+            <Reveal key={s.n} delay={i * 120}>
+              <StepCard n={s.n} icon={s.icon} title={s.title} body={s.body} />
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -420,7 +486,7 @@ export default function Landing() {
       >
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
-            <div>
+            <Reveal variant="left">
               <Pill tone="warm" className="mb-4">
                 ✦ Seis canales · un solo hub
               </Pill>
@@ -431,57 +497,68 @@ export default function Landing() {
               >
                 Todos tus canales bajo la misma marca.
               </Headline>
-            </div>
-            <p className="text-[14px] text-ink-soft max-w-[400px] leading-relaxed">
+            </Reveal>
+            <Reveal variant="right" delay={120} as="p" className="text-[14px] text-ink-soft max-w-[400px] leading-relaxed">
               No necesitás contratar a un diseñador, ni a un community
               manager, ni a una agencia. Nosotros generamos. Vos publicás.
-            </p>
+            </Reveal>
           </div>
 
           <div className="grid md:grid-cols-3 gap-5">
-            <ChannelCard
-              icon={Globe}
-              title="Sitio web"
-              body="Una página única, optimizada para conversión, con tus habitaciones y experiencias."
-              items={['Dominio propio', 'SEO 94/100', 'Mobile + Web Vitals']}
-            />
-            <ChannelCard
-              icon={Camera}
-              title="Redes sociales"
-              body="12 posts para Instagram, 8 para Facebook, 3 para TikTok. Feed, stories, reels y ads."
-              items={['Editor visual', 'Calendario editorial', 'Variantes por formato']}
-            />
-            <ChannelCard
-              icon={MapPin}
-              title="Google Business"
-              body="Tu ficha de Google completa, con respuestas a reseñas generadas en tu tono."
-              items={['Fotos asignadas', 'Atributos', 'Responder con IA']}
-            />
-            <ChannelCard
-              icon={BedDouble}
-              title="OTAs / Booking"
-              body="Descripción optimizada para cada plataforma: Booking, Expedia, Airbnb, TripAdvisor."
-              items={['Copy por OTA', 'Score de completitud', 'Políticas']}
-            />
-            <ChannelCard
-              icon={Mail}
-              title="Email Marketing"
-              body="Cuatro campañas pre-armadas: bienvenida, oferta, post-estadía, newsletter mensual."
-              items={['Plantillas HTML', 'Asuntos generados', 'Exportar a tu lista']}
-            />
-            <ChannelCard
-              icon={LayoutDashboard}
-              title="Resumen ejecutivo"
-              body="Score de presencia, próximos pasos sugeridos y métricas en tiempo real."
-              items={['Estado por canal', 'Recomendaciones IA', 'Performance']}
-            />
+            {[
+              {
+                icon: Globe,
+                title: 'Sitio web',
+                body: 'Una página única, optimizada para conversión, con tus habitaciones y experiencias.',
+                items: ['Dominio propio', 'SEO 94/100', 'Mobile + Web Vitals'],
+              },
+              {
+                icon: Camera,
+                title: 'Redes sociales',
+                body: '12 posts para Instagram, 8 para Facebook, 3 para TikTok. Feed, stories, reels y ads.',
+                items: ['Editor visual', 'Calendario editorial', 'Variantes por formato'],
+              },
+              {
+                icon: MapPin,
+                title: 'Google Business',
+                body: 'Tu ficha de Google completa, con respuestas a reseñas generadas en tu tono.',
+                items: ['Fotos asignadas', 'Atributos', 'Responder con IA'],
+              },
+              {
+                icon: BedDouble,
+                title: 'OTAs / Booking',
+                body: 'Descripción optimizada para cada plataforma: Booking, Expedia, Airbnb, TripAdvisor.',
+                items: ['Copy por OTA', 'Score de completitud', 'Políticas'],
+              },
+              {
+                icon: Mail,
+                title: 'Email Marketing',
+                body: 'Cuatro campañas pre-armadas: bienvenida, oferta, post-estadía, newsletter mensual.',
+                items: ['Plantillas HTML', 'Asuntos generados', 'Exportar a tu lista'],
+              },
+              {
+                icon: LayoutDashboard,
+                title: 'Resumen ejecutivo',
+                body: 'Score de presencia, próximos pasos sugeridos y métricas en tiempo real.',
+                items: ['Estado por canal', 'Recomendaciones IA', 'Performance'],
+              },
+            ].map((c, i) => (
+              <Reveal key={c.title} delay={(i % 3) * 110}>
+                <ChannelCard
+                  icon={c.icon}
+                  title={c.title}
+                  body={c.body}
+                  items={c.items}
+                />
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
       {/* TESTIMONIO */}
       <section id="testimonios" className="max-w-[1180px] mx-auto px-8 py-28">
-        <div className="hp-card p-12 md:p-16 max-w-[900px] mx-auto text-center">
+        <Reveal variant="scale" className="hp-card p-12 md:p-16 max-w-[900px] mx-auto text-center">
           <div className="flex items-center justify-center gap-1 text-amber mb-6">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star key={i} size={16} fill="currentColor" strokeWidth={1.5} />
@@ -511,12 +588,13 @@ export default function Landing() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* PRICING TEASER */}
       <section id="precios" className="max-w-[1180px] mx-auto px-8 pb-28">
-        <div
+        <Reveal
+          variant="scale"
           className="rounded-2xl p-12 md:p-16 relative overflow-hidden text-center"
           style={{
             background:
@@ -567,9 +645,9 @@ export default function Landing() {
                 size="lg"
                 onClick={start}
                 variant="warm"
-                className="px-7"
+                className="px-7 group"
               >
-                Comenzar gratis <ArrowRight size={16} />
+                Comenzar gratis <ArrowRight size={16} className="hp-arrow" />
               </Button>
               <Button
                 size="lg"
@@ -584,7 +662,7 @@ export default function Landing() {
               Plan Pro · USD 89/mes · 14 días gratis · sin tarjeta de crédito
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* FOOTER */}
