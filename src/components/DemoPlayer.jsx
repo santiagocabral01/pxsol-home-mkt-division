@@ -26,6 +26,7 @@ import {
   googleBusiness,
   summary,
 } from '../data/hotel'
+import { BRAND_GRADIENT, BRAND_GRADIENT_H } from '../styles/brand'
 
 /* ---------------------------------------------------------------- *
  *  Easing + small math helpers (everything is driven by the master
@@ -183,7 +184,7 @@ function SparkBurst() {
             key={i}
             className="absolute left-0 top-0 w-1.5 h-1.5 rounded-full"
             style={{
-              background: i % 2 ? '#D4A853' : '#e84a2c',
+              background: i % 2 ? '#D4A853' : 'var(--color-brand)',
               '--sx': `${sx}px`,
               '--sy': `${sy}px`,
               animation: 'hpd-spark 0.55s ease-out forwards',
@@ -281,7 +282,7 @@ function DemoAvatar({ role }) {
   return (
     <span
       className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
-      style={{ background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)' }}
+      style={{ background: BRAND_GRADIENT }}
     >
       <Sparkles size={11} className="text-white" strokeWidth={2.4} />
     </span>
@@ -321,7 +322,7 @@ function ChatHeader({ status }) {
     <div className="flex items-center gap-2 px-3.5 py-2 border-b border-border bg-surface-hover flex-shrink-0">
       <span
         className="w-6 h-6 rounded-full flex items-center justify-center"
-        style={{ background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)' }}
+        style={{ background: BRAND_GRADIENT }}
       >
         <Sparkles size={11} className="text-white" strokeWidth={2.4} />
       </span>
@@ -463,7 +464,7 @@ function SceneIntro({ t }) {
           <span
             className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[0_16px_40px_rgba(232,74,44,0.4)]"
             style={{
-              background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)',
+              background: BRAND_GRADIENT,
               animation: 'hpd-pop 0.6s ease-out both',
             }}
           >
@@ -676,7 +677,7 @@ function SceneGenerating({ t }) {
             <div className="h-1.5 rounded-full bg-pill overflow-hidden mb-6">
               <div
                 className="h-full rounded-full"
-                style={{ width: `${pct}%`, background: 'linear-gradient(90deg,#e84a2c,#d03d21)' }}
+                style={{ width: `${pct}%`, background: BRAND_GRADIENT_H }}
               />
             </div>
 
@@ -995,7 +996,7 @@ function SceneOutro({ onStart }) {
     >
       <div
         className="absolute -top-24 -right-24 w-[300px] h-[300px] rounded-full opacity-40"
-        style={{ background: 'radial-gradient(circle, #e84a2c 0%, transparent 70%)', animation: 'hpd-float 5s ease-in-out infinite' }}
+        style={{ background: 'radial-gradient(circle, var(--color-brand) 0%, transparent 70%)', animation: 'hpd-float 5s ease-in-out infinite' }}
       />
       <div
         className="absolute -bottom-24 -left-24 w-[300px] h-[300px] rounded-full opacity-25"
@@ -1141,7 +1142,7 @@ export default function DemoPlayer({ onClose, onStart }) {
         style={{ animation: 'hpd-player-in 0.4s cubic-bezier(.2,.8,.2,1) both' }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* animated warm glow halo behind the screen */}
+        {/* animated glow halo behind the screen */}
         <div className="absolute -inset-12 pointer-events-none" aria-hidden>
           <div
             className="absolute inset-0 opacity-70"
@@ -1207,7 +1208,7 @@ export default function DemoPlayer({ onClose, onStart }) {
                     className="absolute inset-y-0 left-0 rounded-full"
                     style={{
                       width: `${local * 100}%`,
-                      background: i <= idx ? 'linear-gradient(90deg,#e84a2c,#d03d21)' : 'transparent',
+                      background: i <= idx ? BRAND_GRADIENT_H : 'transparent',
                     }}
                   />
                 </button>

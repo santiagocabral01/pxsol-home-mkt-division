@@ -194,15 +194,20 @@ export default function Summary() {
               key={r.t}
               className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-hover transition"
             >
+              {/*
+               * Dot: mapa estático de tone→color para que Tailwind compile las clases.
+               * Evita bg-${r.tone} dinámico que JIT no puede purgar correctamente.
+               * El brand usa var(--color-brand) via style para respetar el token (QA punto 6).
+               */}
               <div
-                className={`mt-1 w-1.5 h-1.5 rounded-full bg-${r.tone}`}
+                className="mt-1 w-1.5 h-1.5 rounded-full"
                 style={{
                   background:
                     r.tone === 'brand'
-                      ? '#e84a2c'
+                      ? 'var(--color-brand)'
                       : r.tone === 'cool'
-                      ? '#5B8FBF'
-                      : '#D4A853',
+                      ? 'var(--color-cool)'
+                      : 'var(--color-amber)',
                 }}
               />
               <div className="flex-1">

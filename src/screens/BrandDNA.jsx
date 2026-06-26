@@ -15,6 +15,7 @@ import Button from '../components/ui/Button'
 import Stepper from '../components/Stepper'
 import ChatFlow, { BOT_NAME } from '../components/ChatFlow'
 import { useHotel } from '../context/HotelContext'
+import { BRAND_GRADIENT } from '../styles/brand'
 
 const analyzingSteps = [
   'Leyendo la información de tu hotel…',
@@ -187,7 +188,10 @@ export default function BrandDNA() {
           </Pill>
         </header>
         <div className="flex-1 flex flex-col items-center justify-center px-10">
-          <Loader2 size={36} className="text-ink-soft hp-spin mb-8" />
+          <div role="status" aria-live="polite" className="inline-flex">
+            <Loader2 size={36} className="text-ink-soft hp-spin mb-8" aria-hidden="true" />
+            <span className="sr-only">Analizando tu hotel…</span>
+          </div>
           <Headline
             as="h2"
             highlight="analizando"
@@ -302,9 +306,7 @@ export default function BrandDNA() {
           <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border bg-surface-hover">
             <span
               className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{
-                background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)',
-              }}
+              style={{ background: BRAND_GRADIENT }}
             >
               <Sparkles size={15} className="text-white" strokeWidth={2.4} />
             </span>

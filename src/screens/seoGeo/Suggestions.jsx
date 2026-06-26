@@ -125,9 +125,10 @@ export default function Suggestions() {
         </div>
       )}
 
-      <div className="hp-card p-6 mt-8 bg-[color:var(--color-brand-soft)]/30 border border-[color:var(--color-brand)]/15">
+      {/* Bloque "Cómo funciona": fondo y ícono neutros — regla del 10% (QA punto 3) */}
+      <div className="hp-card p-6 mt-8 bg-pill border border-border">
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-lg bg-[color:var(--color-brand)] text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-9 h-9 rounded-lg bg-ink text-white flex items-center justify-center flex-shrink-0">
             <Lightbulb size={16} />
           </div>
           <div>

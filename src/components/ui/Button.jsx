@@ -1,3 +1,10 @@
+/*
+ * Nota de divergencia con el Builder (builder-web-ai):
+ *   Builder: variant="primary" = rojo/marca (bg-brand)
+ *   Este app: variant="primary" = negro (bg-ink) — es el CTA dominante aquí,
+ *             y NO se toca. El rojo de marca usa variant="brand".
+ * No alinear sin revisión intencional de ambos contextos.
+ */
 export default function Button({
   children,
   variant = 'primary',
@@ -11,7 +18,12 @@ export default function Button({
     secondary:
       'bg-card text-ink border border-border hover:border-border-strong hover:bg-surface-hover',
     ghost: 'bg-transparent text-ink-soft hover:text-ink hover:bg-surface-hover',
-    brand: 'bg-[color:var(--color-brand)] text-white hover:bg-[color:var(--color-brand-hover)]',
+    /*
+     * brand: fondo en reposo = brand-hover (#d03d21, 4.8:1 con blanco) para
+     * cumplir WCAG 1.4.3 con texto blanco <18px. El hover va un tono más oscuro.
+     */
+    brand:
+      'bg-[color:var(--color-brand-hover)] text-white hover:bg-[#b8321a]',
   }
   const sizes = {
     sm: 'h-8 px-3 text-[12px] rounded-md gap-1.5',
@@ -20,7 +32,7 @@ export default function Button({
   }
   return (
     <button
-      className={`inline-flex items-center justify-center font-medium transition-all duration-150 ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`inline-flex items-center justify-center font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand)] focus-visible:ring-offset-2 ${variants[variant]} ${sizes[size]} ${className}`}
       {...rest}
     >
       {children}

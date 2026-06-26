@@ -13,13 +13,14 @@ import {
 import ChannelHeader from '../../components/ChannelHeader'
 import Pill from '../../components/ui/Pill'
 import ChatFlow from '../../components/ChatFlow'
+import { BRAND_GRADIENT } from '../../styles/brand'
 
 /* ---------- Chat attachments (static, demo data) ---------- */
 
 function ScoreCard() {
   const rows = [
     { k: 'Global', v: 71, d: '+6', color: '#1a1a1a' },
-    { k: 'SEO', v: 78, d: '+4', color: '#e84a2c' },
+    { k: 'SEO', v: 78, d: '+4', color: 'var(--color-brand)' },
     { k: 'GEO (IA)', v: 64, d: '+11', color: '#5B8FBF' },
   ]
   return (
@@ -179,7 +180,7 @@ export default function Assistant() {
         <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border bg-surface-hover">
           <span
             className="w-8 h-8 rounded-full flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)' }}
+            style={{ background: BRAND_GRADIENT }}
           >
             <Sparkles size={15} className="text-white" strokeWidth={2.4} />
           </span>

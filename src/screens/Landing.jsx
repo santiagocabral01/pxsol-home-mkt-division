@@ -21,6 +21,7 @@ import Pill from '../components/ui/Pill'
 import Button from '../components/ui/Button'
 import DemoPlayer from '../components/DemoPlayer'
 import { hotelImages } from '../data/hotel'
+import { BRAND_GRADIENT } from '../styles/brand'
 
 /* Reveals its children when they scroll into view. `delay` staggers the
    entrance; `variant` picks the travel direction (up | left | right | scale). */
@@ -72,7 +73,7 @@ function Logo() {
           className="w-7 h-7 rounded-lg flex items-center justify-center"
           style={{
             background:
-              'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)',
+              BRAND_GRADIENT,
           }}
         >
           <Sparkles size={14} className="text-white" strokeWidth={2.4} />
@@ -606,7 +607,7 @@ export default function Landing() {
             className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full opacity-30"
             style={{
               background:
-                'radial-gradient(circle, #e84a2c 0%, transparent 70%)',
+                'radial-gradient(circle, var(--color-brand) 0%, transparent 70%)',
             }}
           />
           <div

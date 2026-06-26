@@ -8,6 +8,7 @@ import Stepper from '../components/Stepper'
 import ChatFlow, { BOT_NAME } from '../components/ChatFlow'
 import { useHotel } from '../context/HotelContext'
 import { hotelImages } from '../data/hotel'
+import { BRAND_GRADIENT } from '../styles/brand'
 
 const previewImages = [
   hotelImages.facade,
@@ -118,10 +119,7 @@ export default function Onboarding() {
             <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border bg-surface-hover">
               <span
                 className="w-8 h-8 rounded-full flex items-center justify-center"
-                style={{
-                  background:
-                    'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)',
-                }}
+                style={{ background: BRAND_GRADIENT }}
               >
                 <Sparkles size={15} className="text-white" strokeWidth={2.4} />
               </span>

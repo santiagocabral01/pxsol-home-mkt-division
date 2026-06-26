@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { TrendingDown, TrendingUp } from 'lucide-react'
 import { Loader2 } from 'lucide-react'
 
 // Línea SVG simple. series: [{ date, seo, geo }]. Devuelve dos polylines + área.
@@ -49,18 +50,24 @@ export function LineChart({ series, height = 220 }) {
         preserveAspectRatio="none"
       >
         <defs>
-          <linearGradient id="warmFade" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#e84a2c" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="#e84a2c" stopOpacity="0" />
+          {/* brandFade: gradiente del área SEO — renombrado desde warmFade */}
+          <linearGradient id="brandFade" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stopColor="var(--color-brand)" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="var(--color-brand)" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="coolFade" x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stopColor="#5B8FBF" stopOpacity="0.16" />
             <stop offset="100%" stopColor="#5B8FBF" stopOpacity="0" />
           </linearGradient>
         </defs>
-        <path d={paths.seoArea} fill="url(#warmFade)" />
+        <path d={paths.seoArea} fill="url(#brandFade)" />
         <path d={paths.geoArea} fill="url(#coolFade)" />
-        <path d={paths.seo} fill="none" stroke="#e84a2c" strokeWidth="2" />
+        <path
+          d={paths.seo}
+          fill="none"
+          style={{ stroke: 'var(--color-brand)' }}
+          strokeWidth="2"
+        />
         <path d={paths.geo} fill="none" stroke="#5B8FBF" strokeWidth="2" />
         {ticks.map((t) => (
           <text
@@ -85,7 +92,11 @@ export function SimOverlay({ active, message }) {
   if (!active) return null
   return (
     <div className="absolute inset-0 z-30 flex items-center justify-center bg-card/85 backdrop-blur-sm rounded-[12px]">
-      <div className="flex flex-col items-center gap-3">
+      <div
+        className="flex flex-col items-center gap-3"
+        role="status"
+        aria-live="polite"
+      >
         <div className="relative">
           <div className="w-12 h-12 rounded-full bg-[color:var(--color-brand-soft)] flex items-center justify-center">
             <Loader2 size={20} className="hp-spin text-ink-soft" />
@@ -93,6 +104,7 @@ export function SimOverlay({ active, message }) {
           <span className="absolute -inset-1 rounded-full border border-[color:var(--color-brand)]/30 hp-pulse" />
         </div>
         <div className="text-[12px] text-ink-soft font-medium">{message}</div>
+        <span className="sr-only">Generando…</span>
       </div>
     </div>
   )
@@ -138,16 +150,38 @@ export function EngineBadge({ engine }) {
   )
 }
 
+/*
+ * TrendArrow — dirección de tendencia.
+ * La flecha "down" usa amber (no rojo) para no colisionar con marca (punto 2 del QA).
+ * No depende solo del color: el ícono de dirección aporta significado a WCAG 1.4.1.
+ */
 export function TrendArrow({ trend }) {
   if (trend === 'up')
-    return <span className="text-green text-[12px] inline-flex items-center">▲</span>
+    return (
+      <span
+        className="text-green text-[12px] inline-flex items-center gap-0.5"
+        aria-label="Tendencia al alza"
+      >
+        <TrendingUp size={12} />
+      </span>
+    )
   if (trend === 'down')
-    return <span className="text-[color:var(--color-brand-text)] text-[12px] inline-flex items-center">▼</span>
-  return <span className="text-ink-mute text-[12px] inline-flex items-center">·</span>
+    return (
+      <span
+        className="text-[#8B6F1F] text-[12px] inline-flex items-center gap-0.5"
+        aria-label="Tendencia a la baja"
+      >
+        <TrendingDown size={12} />
+      </span>
+    )
+  return (
+    <span className="text-ink-mute text-[12px] inline-flex items-center">·</span>
+  )
 }
 
 // Mini-spark inline para tarjetas de KPI.
-export function MiniSpark({ data, color = '#e84a2c' }) {
+// El color default usa el token de CSS para que respete el tema.
+export function MiniSpark({ data, color }) {
   if (!data?.length) return null
   const max = Math.max(...data)
   const min = Math.min(...data)
@@ -156,7 +190,12 @@ export function MiniSpark({ data, color = '#e84a2c' }) {
     .join(' ')
   return (
     <svg viewBox="0 0 80 20" className="w-20 h-5">
-      <polyline points={pts} fill="none" stroke={color} strokeWidth="1.5" />
+      <polyline
+        points={pts}
+        fill="none"
+        style={{ stroke: color ?? 'var(--color-brand)' }}
+        strokeWidth="1.5"
+      />
     </svg>
   )
 }

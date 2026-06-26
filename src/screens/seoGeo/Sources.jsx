@@ -18,7 +18,8 @@ function statusUi(status) {
     return { icon: CheckCircle2, label: 'Presente', tone: 'text-green', bg: 'bg-green-soft' }
   if (status === 'pending')
     return { icon: Clock, label: 'Pendiente', tone: 'text-[#8B6F1F]', bg: 'bg-amber-soft' }
-  return { icon: Circle, label: 'Ausente', tone: 'text-[color:var(--color-brand-text)]', bg: 'bg-[color:var(--color-brand-soft)]' }
+  /* Ausente usa amber — estado negativo, no debe compartir el rojo de marca (QA punto 2) */
+  return { icon: Circle, label: 'Ausente', tone: 'text-[#8B6F1F]', bg: 'bg-amber-soft' }
 }
 
 export default function Sources() {

@@ -120,7 +120,8 @@ export default function SeoAnalytics() {
               key={k.term}
               className="flex items-center gap-3 p-3 rounded-lg border border-border bg-[color:var(--color-brand-soft)]/30 hover:bg-[color:var(--color-brand-soft)]/50 transition"
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[color:var(--color-brand)] text-white flex items-center justify-center font-mono text-[13px]">
+              {/* Badge de posición: neutro (bg-ink) — es dato, no acento de marca (regla 10%) */}
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-ink text-white flex items-center justify-center font-mono text-[13px]">
                 #{Math.round(k.position)}
               </div>
               <div className="flex-1 min-w-0">
@@ -273,7 +274,8 @@ function SummaryCard({ label, value, delta, tone, deltaHint }) {
         {label}
       </div>
       <div className="font-mono text-[32px] text-ink leading-none mb-2">{value}</div>
-      <div className={`text-[11px] inline-flex items-center gap-1 ${tone === 'green' ? 'text-green' : 'text-[color:var(--color-brand-text)]'}`}>
+      {/* Delta negativo usa amber para no colisionar con marca (QA punto 2) */}
+      <div className={`text-[11px] inline-flex items-center gap-1 ${tone === 'green' ? 'text-green' : 'text-[#8B6F1F]'}`}>
         <TrendingUp size={11} />
         {delta}
         {deltaHint && <span className="text-ink-soft ml-1">{deltaHint}</span>}

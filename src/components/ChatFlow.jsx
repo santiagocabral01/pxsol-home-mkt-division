@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Sparkles } from 'lucide-react'
+import { BRAND_GRADIENT } from '../styles/brand'
 
 /* ---------------------------------------------------------------- *
  *  ChatFlow — a scripted, auto-playing conversation.
@@ -30,7 +31,7 @@ function Avatar({ role }) {
   return (
     <span
       className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
-      style={{ background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)' }}
+      style={{ background: BRAND_GRADIENT }}
     >
       <Sparkles size={13} className="text-white" strokeWidth={2.4} />
     </span>

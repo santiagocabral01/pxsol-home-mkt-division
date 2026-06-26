@@ -117,9 +117,11 @@ export default function Generating() {
                   Ver mi hub de presencia <ArrowRight size={16} />
                 </>
               ) : (
-                <>
-                  <Loader2 size={14} className="hp-spin" /> Generando…
-                </>
+                <span role="status" aria-live="polite" className="inline-flex items-center gap-2">
+                  <Loader2 size={14} className="hp-spin" aria-hidden="true" />
+                  Generando…
+                  <span className="sr-only">Generando tu presencia, por favor esperá.</span>
+                </span>
               )}
             </Button>
           </div>

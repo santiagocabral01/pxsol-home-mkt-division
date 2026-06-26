@@ -22,6 +22,10 @@
   --color-amber: #d4a853;
   --color-amber-soft: #f7eed6;
 
+  /* Token de error/destructivo — NO reusar --color-brand para estados negativos */
+  --color-destructive: #d4183d;
+  --color-destructive-soft: #fce8ed;
+
   --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
@@ -51,7 +55,7 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--color-bg);
     background-image:
-      radial-gradient(ellipse at 15% 20%, #fde8d0 0%, transparent 50%),
+      radial-gradient(ellipse at 15% 20%, #fdecea 0%, transparent 50%),
       radial-gradient(ellipse at 85% 10%, #d6e8f7 0%, transparent 45%),
       radial-gradient(ellipse at 50% 80%, #e8f0e8 0%, transparent 50%);
     background-attachment: fixed;
@@ -257,7 +261,7 @@
   animation: hp-float 7s ease-in-out infinite;
 }
 
-/* Lift + warm glow on interactive cards. */
+/* Lift + glow on interactive cards. */
 .hp-lift {
   transition:
     transform 0.35s cubic-bezier(0.22, 0.85, 0.25, 1),
