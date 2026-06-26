@@ -166,7 +166,7 @@ export default function Reports() {
               <div className="text-[10px] uppercase tracking-[0.12em] text-white/60 font-medium mb-1">
                 Reporte SEO / GEO · {reportPreview.period}
               </div>
-              <div className="font-display text-[26px] leading-tight">
+              <div className="font-heading text-[26px] font-medium tracking-tight leading-tight">
                 Hotel Azul Marino
               </div>
               <div className="text-[12px] text-white/70 mt-1">

@@ -63,7 +63,7 @@ export default function Suggestions() {
           <div className="w-14 h-14 rounded-full bg-pill text-ink-soft flex items-center justify-center mx-auto mb-4">
             <Inbox size={22} />
           </div>
-          <div className="font-display text-[22px] mb-2">
+          <div className="font-heading text-[22px] font-medium tracking-tight mb-2">
             Sin sugerencias pendientes.
           </div>
           <div className="text-[13px] text-ink-soft max-w-md mx-auto">
@@ -95,7 +95,7 @@ export default function Suggestions() {
                   </button>
                 </div>
 
-                <h3 className="font-display text-[18px] leading-tight mb-3 flex-1">
+                <h3 className="font-heading text-[18px] font-medium tracking-tight leading-tight mb-3 flex-1">
                   {s.title}
                 </h3>
 

@@ -59,7 +59,7 @@ export default function Sources() {
       <div className="hp-card overflow-hidden mb-8">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between gap-4">
           <div>
-            <div className="font-display text-[20px]">Dominios que te mencionan</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Dominios que te mencionan</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Backlinks y citas en menciones editoriales, listings y foros.
             </div>
@@ -126,7 +126,7 @@ export default function Sources() {
       <div className="hp-card p-6">
         <div className="flex items-center gap-2 mb-3">
           <Quote size={14} className="text-ink-soft" />
-          <div className="font-display text-[20px] text-ink">Fuentes recomendadas</div>
+          <div className="font-heading text-[20px] font-medium tracking-tight text-ink">Fuentes recomendadas</div>
         </div>
         <p className="text-[13px] text-ink-soft mb-5">
           Dónde priorizar para conseguir menciones — ordenado por impacto en motores generativos.

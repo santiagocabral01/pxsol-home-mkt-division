@@ -107,7 +107,7 @@ export default function OTAs() {
                 <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-0.5">
                   Tipos de habitación
                 </div>
-                <div className="font-display text-[20px]">
+                <div className="font-heading text-[20px] font-medium tracking-tight">
                   3 categorías publicadas
                 </div>
               </div>
@@ -126,7 +126,7 @@ export default function OTAs() {
                   </div>
                   <div className="flex-1 p-4">
                     <div className="flex items-start justify-between mb-1">
-                      <div className="font-display text-[16px] text-ink">
+                      <div className="font-heading text-[16px] font-medium tracking-tight text-ink">
                         {r.name}
                       </div>
                       <div className="flex items-center gap-1.5">

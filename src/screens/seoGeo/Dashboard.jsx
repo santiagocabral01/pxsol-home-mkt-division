@@ -142,7 +142,7 @@ export default function Dashboard() {
               <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-1">
                 Evolución
               </div>
-              <div className="font-display text-[18px] text-ink">
+              <div className="font-heading text-[18px] font-medium tracking-tight text-ink">
                 SEO vs GEO
               </div>
             </div>
@@ -209,7 +209,7 @@ export default function Dashboard() {
       <div className="hp-card overflow-hidden">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between">
           <div>
-            <div className="font-display text-[20px]">Alertas automáticas</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Alertas automáticas</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Lo que cambió en tu visibilidad — clic para ver el detalle.
             </div>
@@ -320,7 +320,7 @@ function QuickLink({ title, desc, to }) {
       className="hp-card p-5 text-left hover:shadow-[var(--shadow-card-hover)] transition group block"
     >
       <div className="flex items-center justify-between mb-1">
-        <div className="font-display text-[18px] text-ink">{title}</div>
+        <div className="font-heading text-[18px] font-medium tracking-tight text-ink">{title}</div>
         <ArrowUpRight
           size={14}
           className="text-ink-mute group-hover:text-[color:var(--color-brand-text)] transition"

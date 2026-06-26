@@ -46,10 +46,7 @@ function PostCard({ post, onAction }) {
               'linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6))',
           }}
         >
-          <div
-            className="font-display text-[20px] leading-tight"
-            style={{ fontFamily: 'Playfair Display' }}
-          >
+          <div className="font-display text-[20px] leading-tight">
             {post.overlay}
           </div>
           <div className="text-[11px] opacity-90 mt-1">{post.sub}</div>

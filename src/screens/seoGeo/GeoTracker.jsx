@@ -167,7 +167,7 @@ export default function GeoTracker() {
       <div className="hp-card overflow-hidden mb-6">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between gap-4">
           <div>
-            <div className="font-display text-[20px]">Queries monitoreadas</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Queries monitoreadas</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Cada fila es una pregunta real que viajeros le hacen a una IA. Clic para ver el extracto.
             </div>
@@ -245,7 +245,7 @@ export default function GeoTracker() {
           <div>
             <div className="flex items-center gap-2">
               <Trophy size={14} className="text-ink-soft" />
-              <div className="font-display text-[20px] text-ink">Comparativa de competidores</div>
+              <div className="font-heading text-[20px] font-medium tracking-tight text-ink">Comparativa de competidores</div>
             </div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Cómo ranquea tu hotel vs. otros boutique de Cartagena en motores de IA.

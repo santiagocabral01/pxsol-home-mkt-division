@@ -109,7 +109,7 @@ export default function SeoAnalytics() {
       <div className="hp-card p-6 mb-6">
         <div className="flex items-center gap-2 mb-3">
           <Sparkles size={14} className="text-[color:var(--color-brand-text)]" />
-          <div className="font-display text-[18px] text-ink">Oportunidades</div>
+          <div className="font-heading text-[18px] font-medium tracking-tight text-ink">Oportunidades</div>
         </div>
         <p className="text-[13px] text-ink-soft mb-5">
           Keywords donde aparecés en posición 4 a 20 — basta un empujón para entrar al top 3. Cada una abre un brief listo en el Generador.
@@ -150,7 +150,7 @@ export default function SeoAnalytics() {
       <div className="hp-card overflow-hidden mb-6">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between">
           <div>
-            <div className="font-display text-[20px]">Top keywords orgánicas</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Top keywords orgánicas</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Ordenable por cualquier columna. Las marcadas en ámbar son oportunidades.
             </div>
@@ -218,7 +218,7 @@ export default function SeoAnalytics() {
       {/* Top pages */}
       <div className="hp-card overflow-hidden">
         <div className="px-6 py-4 border-b border-border">
-          <div className="font-display text-[20px]">Páginas con mayor tráfico</div>
+          <div className="font-heading text-[20px] font-medium tracking-tight">Páginas con mayor tráfico</div>
           <div className="text-[12px] text-ink-soft mt-0.5">
             Top URLs de tu sitio según GSC.
           </div>

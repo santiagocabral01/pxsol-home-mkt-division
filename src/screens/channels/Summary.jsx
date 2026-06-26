@@ -114,7 +114,7 @@ export default function Summary() {
       <div className="hp-card overflow-hidden">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between">
           <div>
-            <div className="font-display text-[20px]">Canales de {hotel.name}</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Canales de {hotel.name}</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Estado actualizado hace 12 minutos
             </div>

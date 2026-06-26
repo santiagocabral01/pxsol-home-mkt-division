@@ -121,7 +121,7 @@ export default function GoogleBusiness() {
             ))}
           </div>
           <div className="p-4">
-            <div className="font-display text-[20px] mb-0.5">{data.name}</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight mb-0.5">{data.name}</div>
             <div className="flex items-center gap-2 mb-1.5">
               <StarRow value={4.6} />
               <span className="text-[12px] text-ink-soft">(284 reseñas)</span>
@@ -282,7 +282,7 @@ export default function GoogleBusiness() {
                 <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-0.5">
                   Reseñas recientes
                 </div>
-                <div className="font-display text-[18px]">
+                <div className="font-heading text-[18px] font-medium tracking-tight">
                   3 esperando respuesta
                 </div>
               </div>

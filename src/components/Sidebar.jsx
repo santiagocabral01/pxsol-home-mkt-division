@@ -72,7 +72,7 @@ export default function Sidebar() {
         <div className="text-[11px] uppercase tracking-wider text-ink-mute mb-1">
           Hotel
         </div>
-        <div className="font-display text-[20px] leading-tight text-ink">
+        <div className="font-heading text-[20px] font-medium tracking-tight leading-tight text-ink">
           {hotel.name}
         </div>
         <div className="text-[12px] text-ink-soft mt-0.5">

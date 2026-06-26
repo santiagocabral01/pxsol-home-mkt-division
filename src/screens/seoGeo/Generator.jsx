@@ -207,7 +207,7 @@ export default function Generator() {
                 <div className="w-12 h-12 rounded-full bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)] flex items-center justify-center mx-auto mb-4">
                   <Wand2 size={20} />
                 </div>
-                <div className="font-display text-[20px] mb-1">
+                <div className="font-heading text-[20px] font-medium tracking-tight mb-1">
                   Elegí el tipo y dale a Generar.
                 </div>
                 <div className="text-[13px] text-ink-soft">
@@ -265,7 +265,7 @@ export default function Generator() {
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <CheckCircle2 size={14} className="text-green" />
-                      <div className="font-display text-[16px]">Rich snippet schema</div>
+                      <div className="font-heading text-[16px] font-medium tracking-tight">Rich snippet schema</div>
                     </div>
                     <Pill tone="green">JSON-LD válido</Pill>
                   </div>
@@ -281,7 +281,7 @@ export default function Generator() {
         <div className="grid grid-cols-2 gap-6">
           <div className="hp-card p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="font-display text-[18px]">Contenido original</div>
+              <div className="font-heading text-[18px] font-medium tracking-tight">Contenido original</div>
               <Pill>Pegalo acá</Pill>
             </div>
             <Textarea
@@ -297,7 +297,7 @@ export default function Generator() {
 
           <div className="hp-card p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="font-display text-[18px]">Versión optimizada</div>
+              <div className="font-heading text-[18px] font-medium tracking-tight">Versión optimizada</div>
               {diff && (
                 <div className="flex items-center gap-2">
                   <Button variant="secondary" size="sm" onClick={onCopy}>

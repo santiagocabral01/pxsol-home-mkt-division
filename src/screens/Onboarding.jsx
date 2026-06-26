@@ -188,7 +188,7 @@ export default function Onboarding() {
                   )}
                 </Pill>
               </div>
-              <div className="font-display text-[22px] leading-tight">
+              <div className="font-heading text-[22px] font-medium tracking-tight leading-tight">
                 {hotel.name}
               </div>
               <div className="text-[12px] text-ink-soft mt-0.5">

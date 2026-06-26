@@ -101,7 +101,7 @@ export default function EmailMarketing() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <div className="font-display text-[24px] text-ink">
+              <div className="font-heading text-[24px] font-medium tracking-tight text-ink">
                 {campaign.name}
               </div>
               <div className="text-[12px] text-ink-soft">
