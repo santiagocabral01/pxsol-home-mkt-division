@@ -15,12 +15,12 @@
   --color-brand-hover: #B3090F;   /* hover del rojo (web comercial) */
   --color-brand-text:  #D20A11;   /* marca como texto/links sobre claro — 5.5:1 AA */
   --color-brand-soft:  #FCE2E3;   /* superficie roja sutil (DS comercial red-100) */
-  --color-cool: #5b8fbf;
-  --color-cool-soft: #e1ecf5;
-  --color-green: #6baf8a;
-  --color-green-soft: #e0efe6;
-  --color-amber: #d4a853;
-  --color-amber-soft: #f7eed6;
+  --color-cool: #2A6FDB;          /* azul info (DS comercial) */
+  --color-cool-soft: #D6EFFF;     /* info-bg (DS comercial) */
+  --color-green: #1F8A5B;         /* verde éxito (DS comercial) */
+  --color-green-soft: #E4F4EC;    /* success-bg (DS comercial) */
+  --color-amber: #F1C200;         /* amarillo warning/CRM (DS comercial) — fill/acento, no texto */
+  --color-amber-soft: #FDF6D9;    /* warning-bg suave (DS comercial) */
 
   /* Token de error/destructivo — NO reusar --color-brand para estados negativos */
   --color-destructive: #d4183d;
