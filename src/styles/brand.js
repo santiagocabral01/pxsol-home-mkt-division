@@ -8,8 +8,8 @@
  */
 
 /** Gradiente de identidad de marca: CTA primario, avatares de IA, barras de progreso.
- *  Los dos pasos usan --color-brand (#e84a2c) y --color-brand-hover (#d03d21). */
-export const BRAND_GRADIENT = 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)'
+ *  Los dos pasos usan --color-brand (#D20A11) y --color-brand-hover (#B3090F) — rojo web comercial PXSOL. */
+export const BRAND_GRADIENT = 'linear-gradient(135deg, #D20A11 0%, #B3090F 100%)'
 
 /** Variante horizontal — para barras de progreso y timelines. */
-export const BRAND_GRADIENT_H = 'linear-gradient(90deg, #e84a2c 0%, #d03d21 100%)'
+export const BRAND_GRADIENT_H = 'linear-gradient(90deg, #D20A11 0%, #B3090F 100%)'

@@ -5,16 +5,16 @@
   --color-card: #ffffff;
   --color-border: #ebebeb;
   --color-border-strong: #d9d9d6;
-  --color-ink: #1a1a1a;
-  --color-ink-soft: #6b7280;
-  --color-ink-mute: #b0b0b0;
+  --color-ink: #000017;           /* ink navy (DS comercial PXSOL) — nunca #000 puro */
+  --color-ink-soft: #555555;      /* texto secundario (DS comercial ink-350) */
+  --color-ink-mute: #999999;      /* muted: fechas, labels (DS comercial ink-400) */
   --color-pill: #f3f3f1;
   --color-surface-hover: #f7f7f5;
 
-  --color-brand:       #e84a2c;   /* rojo PXSOL — fills: botones, dots, barras, bordes */
-  --color-brand-hover: #d03d21;   /* hover de CTA */
-  --color-brand-text:  #b8321a;   /* marca como texto sobre fondo claro — 5.3:1 AA */
-  --color-brand-soft:  #fdecea;   /* fondo suave: badges, estados activos, selection */
+  --color-brand:       #D20A11;   /* rojo de marca PXSOL (web comercial) — CTA, acento */
+  --color-brand-hover: #B3090F;   /* hover del rojo (web comercial) */
+  --color-brand-text:  #D20A11;   /* marca como texto/links sobre claro — 5.5:1 AA */
+  --color-brand-soft:  #FCE2E3;   /* superficie roja sutil (DS comercial red-100) */
   --color-cool: #5b8fbf;
   --color-cool-soft: #e1ecf5;
   --color-green: #6baf8a;
@@ -30,11 +30,11 @@
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
-  --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
-  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.11);
-  --shadow-float: 0 32px 80px rgba(0, 0, 0, 0.15);
+  --shadow-card: 0 1px 2px rgba(0, 0, 23, 0.05), 0 10px 30px rgba(0, 0, 23, 0.07);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 23, 0.12);
+  --shadow-float: 0 22px 50px rgba(0, 0, 23, 0.18);
 
-  --radius-card: 12px;
+  --radius-card: 14px;
   --radius-modal: 16px;
 }
 
@@ -55,7 +55,7 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--color-bg);
     background-image:
-      radial-gradient(ellipse at 15% 20%, #fdecea 0%, transparent 50%),
+      radial-gradient(ellipse at 15% 20%, #FCE2E3 0%, transparent 50%),
       radial-gradient(ellipse at 85% 10%, #d6e8f7 0%, transparent 45%),
       radial-gradient(ellipse at 50% 80%, #e8f0e8 0%, transparent 50%);
     background-attachment: fixed;

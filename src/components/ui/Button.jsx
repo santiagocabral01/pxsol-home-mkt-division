@@ -19,11 +19,11 @@ export default function Button({
       'bg-card text-ink border border-border hover:border-border-strong hover:bg-surface-hover',
     ghost: 'bg-transparent text-ink-soft hover:text-ink hover:bg-surface-hover',
     /*
-     * brand: fondo en reposo = brand-hover (#d03d21, 4.8:1 con blanco) para
-     * cumplir WCAG 1.4.3 con texto blanco <18px. El hover va un tono más oscuro.
+     * brand: rojo de marca PXSOL (#D20A11, 5.5:1 con blanco → cumple WCAG 1.4.3
+     * como fill con texto blanco). Hover un tono más oscuro (brand-hover #B3090F).
      */
     brand:
-      'bg-[color:var(--color-brand-hover)] text-white hover:bg-[#b8321a]',
+      'bg-[color:var(--color-brand)] text-white hover:bg-[color:var(--color-brand-hover)]',
   }
   const sizes = {
     sm: 'h-8 px-3 text-[12px] rounded-md gap-1.5',
