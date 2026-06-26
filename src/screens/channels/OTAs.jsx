@@ -93,7 +93,7 @@ export default function OTAs() {
               <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium">
                 Descripción generada
               </div>
-              <Pill tone="brand">{ota.badge}</Pill>
+              <Pill tone="accent">{ota.badge}</Pill>
             </div>
             <Textarea
               value={ota.description}

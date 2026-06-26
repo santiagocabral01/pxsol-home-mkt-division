@@ -492,14 +492,14 @@
   }
 }
 
-/* Warm focus ring that pulses on the button about to be clicked. */
+/* Brand focus ring that pulses on the button about to be clicked. */
 @keyframes hpd-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(232, 74, 44, 0);
+    box-shadow: 0 0 0 0 rgba(210, 10, 17, 0);
   }
   50% {
-    box-shadow: 0 0 0 7px rgba(232, 74, 44, 0.22);
+    box-shadow: 0 0 0 7px rgba(210, 10, 17, 0.22);
   }
 }
 

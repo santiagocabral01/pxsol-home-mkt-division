@@ -234,17 +234,17 @@ function CtaButton({ clicked, clicking, shine = false, variant = 'ink', classNam
   const base = variant === 'brand' ? 'bg-[color:var(--color-brand)] text-white' : 'bg-ink text-white'
   return (
     <button
-      className={`relative overflow-hidden inline-flex items-center justify-center gap-2 h-11 px-5 rounded-lg text-[13px] font-medium ${base} ${className}`}
+      className={`relative overflow-hidden inline-flex items-center justify-center gap-2 h-11 px-5 rounded-full text-[13px] font-medium ${base} ${className}`}
       style={{
         transform: clicking ? 'scale(0.96)' : clicked ? 'scale(1.02)' : 'scale(1)',
         transition: 'transform 0.18s cubic-bezier(.3,1.4,.5,1), box-shadow 0.25s ease',
         boxShadow: clicked
-          ? '0 0 0 4px rgba(232,74,44,0.28), 0 10px 26px rgba(232,74,44,0.35)'
+          ? '0 0 0 4px rgba(210,10,17,0.28), 0 10px 26px rgba(210,10,17,0.35)'
           : '0 6px 18px rgba(0,0,0,0.15)',
       }}
     >
       {children}
-      {shine && !clicked && <span className="hpd-shine rounded-lg" />}
+      {shine && !clicked && <span className="hpd-shine rounded-full" />}
     </button>
   )
 }
@@ -462,7 +462,7 @@ function SceneIntro({ t }) {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8 bg-bg">
         <div style={{ animation: 'hpd-float 4s ease-in-out infinite' }}>
           <span
-            className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[0_16px_40px_rgba(232,74,44,0.4)]"
+            className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[0_16px_40px_rgba(210,10,17,0.4)]"
             style={{
               background: BRAND_GRADIENT,
               animation: 'hpd-pop 0.6s ease-out both',
@@ -912,7 +912,7 @@ function SceneGoogleBusiness({ t }) {
 
             <div
               className="mt-3 border-l-2 border-[color:var(--color-brand)] bg-[color:var(--color-brand-soft)]/40 rounded-r-lg p-3 transition-shadow duration-500"
-              style={{ boxShadow: replyDone ? '0 0 0 2px rgba(232,74,44,0.2)' : 'none' }}
+              style={{ boxShadow: replyDone ? '0 0 0 2px rgba(210,10,17,0.2)' : 'none' }}
             >
               <div className="flex items-center gap-1.5 text-[9px] text-[color:var(--color-brand-text)] font-medium uppercase tracking-wide mb-1.5">
                 <Sparkles size={10} className={replyDone ? '' : 'hp-pulse'} /> Respuesta sugerida · en tu tono
@@ -1020,7 +1020,7 @@ function SceneOutro({ onStart }) {
         </p>
         <button
           onClick={onStart}
-          className="mt-7 bg-[color:var(--color-brand)] text-white h-12 px-7 rounded-lg inline-flex items-center gap-2 text-[14px] font-medium hover:bg-[color:var(--color-brand-hover)] transition-colors"
+          className="mt-7 bg-[color:var(--color-brand)] text-white h-12 px-7 rounded-full inline-flex items-center gap-2 text-[14px] font-medium hover:bg-[color:var(--color-brand-hover)] transition-colors"
           style={{ animation: 'hpd-pop 0.5s ease-out 0.4s both' }}
         >
           Comenzar gratis <ArrowRight size={16} />
@@ -1148,7 +1148,7 @@ export default function DemoPlayer({ onClose, onStart }) {
             className="absolute inset-0 opacity-70"
             style={{
               background:
-                'radial-gradient(38% 50% at 28% 30%, rgba(232,74,44,0.55), transparent 70%), radial-gradient(40% 50% at 74% 72%, rgba(212,168,83,0.45), transparent 70%)',
+                'radial-gradient(38% 50% at 28% 30%, rgba(210,10,17,0.55), transparent 70%), radial-gradient(40% 50% at 74% 72%, rgba(241,194,0,0.45), transparent 70%)',
               filter: 'blur(36px)',
               animation: 'hpd-bg-pan 9s ease-in-out infinite',
             }}
@@ -1218,7 +1218,7 @@ export default function DemoPlayer({ onClose, onStart }) {
 
           <button
             onClick={onStart}
-            className="hidden sm:inline-flex items-center gap-1.5 bg-[color:var(--color-brand)] text-white text-[12px] font-medium px-3.5 h-8 rounded-lg hover:bg-[color:var(--color-brand-hover)] transition-colors flex-shrink-0"
+            className="hidden sm:inline-flex items-center gap-1.5 bg-[color:var(--color-brand)] text-white text-[12px] font-medium px-3.5 h-8 rounded-full hover:bg-[color:var(--color-brand-hover)] transition-colors flex-shrink-0"
           >
             Comenzar gratis <ArrowRight size={13} />
           </button>

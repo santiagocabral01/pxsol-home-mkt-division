@@ -96,7 +96,7 @@ export default function Website() {
                   {websiteMeta.seoScore}/100
                 </span>
               </div>
-              <ScoreBar value={websiteMeta.seoScore} tone="brand" />
+              <ScoreBar value={websiteMeta.seoScore} tone="accent" />
             </div>
             <button
               onClick={() =>

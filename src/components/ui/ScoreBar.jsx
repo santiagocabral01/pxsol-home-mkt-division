@@ -8,6 +8,7 @@ export default function ScoreBar({
   const pct = Math.max(0, Math.min(100, (value / max) * 100))
   const tones = {
     brand: 'bg-[color:var(--color-brand)]',
+    accent: 'bg-[color:var(--color-accent)]',
     cool: 'bg-cool',
     green: 'bg-green',
     amber: 'bg-amber',
