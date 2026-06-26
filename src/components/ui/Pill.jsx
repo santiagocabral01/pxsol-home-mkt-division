@@ -1,7 +1,7 @@
 export default function Pill({ children, tone = 'neutral', className = '' }) {
   const tones = {
     neutral: 'bg-pill text-ink-soft',
-    warm: 'bg-warm-soft text-warm',
+    brand: 'bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)]',
     cool: 'bg-cool-soft text-cool',
     green: 'bg-green-soft text-green',
     amber: 'bg-amber-soft text-[#8B6F1F]',

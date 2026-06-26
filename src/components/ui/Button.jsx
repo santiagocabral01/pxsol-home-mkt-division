@@ -11,7 +11,7 @@ export default function Button({
     secondary:
       'bg-card text-ink border border-border hover:border-border-strong hover:bg-surface-hover',
     ghost: 'bg-transparent text-ink-soft hover:text-ink hover:bg-surface-hover',
-    warm: 'bg-warm text-white hover:bg-[#c2754d]',
+    brand: 'bg-[color:var(--color-brand)] text-white hover:bg-[color:var(--color-brand-hover)]',
   }
   const sizes = {
     sm: 'h-8 px-3 text-[12px] rounded-md gap-1.5',

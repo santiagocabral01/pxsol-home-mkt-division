@@ -70,7 +70,7 @@ export default function OTAs() {
             >
               {o}
               {isActive && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-warm" />
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[color:var(--color-brand)]" />
               )}
             </button>
           )
@@ -85,7 +85,7 @@ export default function OTAs() {
               <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium">
                 Descripción generada
               </div>
-              <Pill tone="warm">{ota.badge}</Pill>
+              <Pill tone="brand">{ota.badge}</Pill>
             </div>
             <Textarea
               value={ota.description}
@@ -248,7 +248,7 @@ export default function OTAs() {
 
           <div className="hp-card p-6">
             <div className="flex items-center gap-2 mb-3">
-              <AlertCircle size={14} className="text-warm" />
+              <AlertCircle size={14} className="text-ink-soft" />
               <span className="text-[11px] uppercase tracking-wider text-ink font-medium">
                 Falta completar
               </span>
@@ -256,7 +256,7 @@ export default function OTAs() {
             <ul className="space-y-2 text-[13px] text-ink-soft">
               {ota.missing.map((m) => (
                 <li key={m} className="flex items-start gap-2">
-                  <span className="w-1 h-1 rounded-full bg-warm mt-2 flex-shrink-0" />
+                  <span className="w-1 h-1 rounded-full bg-ink-mute mt-2 flex-shrink-0" />
                   {m}
                 </li>
               ))}

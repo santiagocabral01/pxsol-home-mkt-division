@@ -17,7 +17,7 @@ import { useSeoGeo, useSimulatedAsync } from '../../context/SeoGeoContext'
 import { SimOverlay } from './_shared'
 
 const reasonUi = {
-  opportunity_keyword: { icon: TrendingUp, tone: 'warm', label: 'Oportunidad de keyword' },
+  opportunity_keyword: { icon: TrendingUp, tone: 'brand', label: 'Oportunidad de keyword' },
   ai_faq: { icon: Bot, tone: 'cool', label: 'Pregunta frecuente en IA' },
   seasonality: { icon: CalendarClock, tone: 'green', label: 'Estacionalidad' },
 }
@@ -52,7 +52,7 @@ export default function Suggestions() {
         title="Tres ideas listas para producir cada semana."
         subtitle="No tenés que pensar qué publicar. Te llegan curadas, con motivo, tipo y un brief listo para mandar al generador."
         right={
-          <Pill tone="warm">
+          <Pill tone="neutral">
             <Lightbulb size={11} /> Semana del 8 al 14 de junio
           </Pill>
         }
@@ -125,9 +125,9 @@ export default function Suggestions() {
         </div>
       )}
 
-      <div className="hp-card p-6 mt-8 bg-warm-soft/30 border border-warm/15">
+      <div className="hp-card p-6 mt-8 bg-[color:var(--color-brand-soft)]/30 border border-[color:var(--color-brand)]/15">
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-lg bg-warm text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-9 h-9 rounded-lg bg-[color:var(--color-brand)] text-white flex items-center justify-center flex-shrink-0">
             <Lightbulb size={16} />
           </div>
           <div>

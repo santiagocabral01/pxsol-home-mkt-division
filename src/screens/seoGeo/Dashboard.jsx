@@ -28,7 +28,7 @@ function Delta({ value, suffix = '' }) {
   return (
     <span
       className={`inline-flex items-center gap-0.5 text-[11px] font-medium ${
-        positive ? 'text-green' : 'text-warm'
+        positive ? 'text-green' : 'text-[color:var(--color-brand-text)]'
       }`}
     >
       <Icon size={11} />
@@ -61,7 +61,7 @@ export default function Dashboard() {
         subtitle="Tu score global y todo lo que está moviendo la aguja esta semana — en orgánico de Google y en las nuevas referencias de ChatGPT, Perplexity y Google AI Overviews."
         right={
           <div className="flex items-center gap-2">
-            <Pill tone="warm">
+            <Pill tone="brand">
               <Sparkles size={11} /> IA monitoreando 12 motores
             </Pill>
           </div>
@@ -98,7 +98,7 @@ export default function Dashboard() {
                   <Delta value={visibilityOverview.delta.seo} />
                 </div>
               </div>
-              <ScoreBar value={visibilityOverview.seoScore} tone="warm" />
+              <ScoreBar value={visibilityOverview.seoScore} tone="brand" />
               <div className="text-[11px] text-ink-mute mt-2">
                 Google · Bing · Yandex
               </div>
@@ -151,7 +151,7 @@ export default function Dashboard() {
           <LineChart series={series} height={170} />
           <div className="flex items-center gap-4 mt-3 text-[11px] text-ink-soft">
             <span className="inline-flex items-center gap-1.5">
-              <span className="w-2.5 h-0.5 bg-warm rounded" /> SEO
+              <span className="w-2.5 h-0.5 bg-[color:var(--color-brand)] rounded" /> SEO
             </span>
             <span className="inline-flex items-center gap-1.5">
               <span className="w-2.5 h-0.5 bg-cool rounded" /> GEO
@@ -200,7 +200,7 @@ export default function Dashboard() {
               Lo que cambió en tu visibilidad — clic para ver el detalle.
             </div>
           </div>
-          <Pill tone="warm">
+          <Pill tone="brand">
             <Sparkles size={11} /> Generadas por IA
           </Pill>
         </div>
@@ -217,8 +217,8 @@ export default function Dashboard() {
                     ? 'bg-green-soft text-green'
                     : a.tone === 'cool'
                     ? 'bg-cool-soft text-cool'
-                    : a.tone === 'warm'
-                    ? 'bg-warm-soft text-warm'
+                    : a.tone === 'brand'
+                    ? 'bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)]'
                     : 'bg-amber-soft text-[#8B6F1F]'
                 }`}
               >
@@ -261,7 +261,7 @@ export default function Dashboard() {
 
 function KpiCard({ label, value, deltaLabel, deltaTone, icon: Icon, accent, onClick }) {
   const accents = {
-    warm: 'bg-warm-soft text-warm',
+    warm: 'bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)]',
     cool: 'bg-cool-soft text-cool',
     green: 'bg-green-soft text-green',
   }
@@ -282,7 +282,7 @@ function KpiCard({ label, value, deltaLabel, deltaTone, icon: Icon, accent, onCl
       <div className="flex items-baseline gap-2 mb-1">
         <span className="font-mono text-[34px] text-ink leading-none">{value}</span>
       </div>
-      <div className={`text-[11px] ${deltaTone === 'green' ? 'text-green' : 'text-warm'}`}>
+      <div className={`text-[11px] ${deltaTone === 'green' ? 'text-green' : 'text-[color:var(--color-brand-text)]'}`}>
         {deltaLabel}
       </div>
       <div className="opacity-0 group-hover:opacity-100 transition text-[11px] text-ink-soft mt-3 inline-flex items-center gap-1">
@@ -303,7 +303,7 @@ function QuickLink({ title, desc, to }) {
         <div className="font-display text-[18px] text-ink">{title}</div>
         <ArrowUpRight
           size={14}
-          className="text-ink-mute group-hover:text-warm transition"
+          className="text-ink-mute group-hover:text-[color:var(--color-brand-text)] transition"
         />
       </div>
       <div className="text-[12px] text-ink-soft">{desc}</div>

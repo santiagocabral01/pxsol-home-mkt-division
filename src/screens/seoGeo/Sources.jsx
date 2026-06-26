@@ -18,7 +18,7 @@ function statusUi(status) {
     return { icon: CheckCircle2, label: 'Presente', tone: 'text-green', bg: 'bg-green-soft' }
   if (status === 'pending')
     return { icon: Clock, label: 'Pendiente', tone: 'text-[#8B6F1F]', bg: 'bg-amber-soft' }
-  return { icon: Circle, label: 'Ausente', tone: 'text-warm', bg: 'bg-warm-soft' }
+  return { icon: Circle, label: 'Ausente', tone: 'text-[color:var(--color-brand-text)]', bg: 'bg-[color:var(--color-brand-soft)]' }
 }
 
 export default function Sources() {
@@ -124,7 +124,7 @@ export default function Sources() {
       {/* Recomendaciones */}
       <div className="hp-card p-6">
         <div className="flex items-center gap-2 mb-3">
-          <Quote size={14} className="text-warm" />
+          <Quote size={14} className="text-ink-soft" />
           <div className="font-display text-[20px] text-ink">Fuentes recomendadas</div>
         </div>
         <p className="text-[13px] text-ink-soft mb-5">
@@ -145,7 +145,7 @@ export default function Sources() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="text-[14px] text-ink font-medium">{r.name}</div>
-                    <Pill tone={r.priority === 'high' ? 'warm' : r.priority === 'medium' ? 'cool' : 'neutral'}>
+                    <Pill tone={r.priority === 'high' ? 'brand' : r.priority === 'medium' ? 'cool' : 'neutral'}>
                       {r.priority === 'high' ? 'Prioridad alta' : r.priority === 'medium' ? 'Media' : 'Baja'}
                     </Pill>
                   </div>

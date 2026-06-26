@@ -166,11 +166,11 @@ export default function Generator() {
                         }}
                         className={`p-3 rounded-lg border text-left transition ${
                           active
-                            ? 'border-warm bg-warm-soft/40'
+                            ? 'border-[color:var(--color-brand)] bg-[color:var(--color-brand-soft)]/40'
                             : 'border-border hover:border-border-strong hover:bg-surface-hover'
                         }`}
                       >
-                        <Icon size={15} className={active ? 'text-warm' : 'text-ink-soft'} />
+                        <Icon size={15} className={active ? 'text-[color:var(--color-brand-text)]' : 'text-ink-soft'} />
                         <div className="text-[12px] text-ink mt-1.5 leading-tight">
                           {t.label}
                         </div>
@@ -204,7 +204,7 @@ export default function Generator() {
           <div className="space-y-4">
             {!draft && !loading && (
               <div className="hp-card p-10 text-center">
-                <div className="w-12 h-12 rounded-full bg-warm-soft text-warm flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 rounded-full bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)] flex items-center justify-center mx-auto mb-4">
                   <Wand2 size={20} />
                 </div>
                 <div className="font-display text-[20px] mb-1">
@@ -219,7 +219,7 @@ export default function Generator() {
               <>
                 <div className="hp-card p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <Pill tone="warm">
+                    <Pill tone="brand">
                       <currentType.icon size={11} /> {currentType.label}
                     </Pill>
                     <div className="flex items-center gap-2">

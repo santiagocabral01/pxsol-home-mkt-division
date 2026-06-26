@@ -50,8 +50,8 @@ export function LineChart({ series, height = 220 }) {
       >
         <defs>
           <linearGradient id="warmFade" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stopColor="#D4845A" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="#D4845A" stopOpacity="0" />
+            <stop offset="0%" stopColor="#e84a2c" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="#e84a2c" stopOpacity="0" />
           </linearGradient>
           <linearGradient id="coolFade" x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stopColor="#5B8FBF" stopOpacity="0.16" />
@@ -60,7 +60,7 @@ export function LineChart({ series, height = 220 }) {
         </defs>
         <path d={paths.seoArea} fill="url(#warmFade)" />
         <path d={paths.geoArea} fill="url(#coolFade)" />
-        <path d={paths.seo} fill="none" stroke="#D4845A" strokeWidth="2" />
+        <path d={paths.seo} fill="none" stroke="#e84a2c" strokeWidth="2" />
         <path d={paths.geo} fill="none" stroke="#5B8FBF" strokeWidth="2" />
         {ticks.map((t) => (
           <text
@@ -87,10 +87,10 @@ export function SimOverlay({ active, message }) {
     <div className="absolute inset-0 z-30 flex items-center justify-center bg-card/85 backdrop-blur-sm rounded-[12px]">
       <div className="flex flex-col items-center gap-3">
         <div className="relative">
-          <div className="w-12 h-12 rounded-full bg-warm-soft flex items-center justify-center">
-            <Loader2 size={20} className="hp-spin text-warm" />
+          <div className="w-12 h-12 rounded-full bg-[color:var(--color-brand-soft)] flex items-center justify-center">
+            <Loader2 size={20} className="hp-spin text-ink-soft" />
           </div>
-          <span className="absolute -inset-1 rounded-full border border-warm/30 hp-pulse" />
+          <span className="absolute -inset-1 rounded-full border border-[color:var(--color-brand)]/30 hp-pulse" />
         </div>
         <div className="text-[12px] text-ink-soft font-medium">{message}</div>
       </div>
@@ -142,12 +142,12 @@ export function TrendArrow({ trend }) {
   if (trend === 'up')
     return <span className="text-green text-[12px] inline-flex items-center">▲</span>
   if (trend === 'down')
-    return <span className="text-warm text-[12px] inline-flex items-center">▼</span>
+    return <span className="text-[color:var(--color-brand-text)] text-[12px] inline-flex items-center">▼</span>
   return <span className="text-ink-mute text-[12px] inline-flex items-center">·</span>
 }
 
 // Mini-spark inline para tarjetas de KPI.
-export function MiniSpark({ data, color = '#D4845A' }) {
+export function MiniSpark({ data, color = '#e84a2c' }) {
   if (!data?.length) return null
   const max = Math.max(...data)
   const min = Math.min(...data)

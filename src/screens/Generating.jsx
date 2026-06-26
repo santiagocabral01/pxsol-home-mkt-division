@@ -34,18 +34,18 @@ export default function Generating() {
     <div className="min-h-screen flex flex-col">
       <header className="flex items-center justify-between px-10 py-6 border-b border-border bg-card/60 backdrop-blur-sm">
         <div className="flex items-center gap-2">
-          <Sparkles size={16} className="text-warm" />
+          <Sparkles size={16} className="text-[color:var(--color-brand-text)]" />
           <span className="font-display text-[18px]">Hotel Presence</span>
         </div>
         <Stepper current={3} />
-        <Pill tone="warm">
+        <Pill tone="brand">
           <Sparkles size={11} /> Demo en vivo
         </Pill>
       </header>
 
       <main className="flex-1 flex items-center justify-center px-10">
         <div className="hp-card max-w-[560px] w-full p-10 hp-fade-in">
-          <Pill tone="warm" className="mb-4">
+          <Pill tone="neutral" className="mb-4">
             ✦ Paso 3 — Generando todo tu hub
           </Pill>
           <Headline
@@ -68,7 +68,7 @@ export default function Generating() {
           </div>
           <div className="w-full bg-pill rounded-full h-1.5 overflow-hidden mb-7">
             <div
-              className="h-full bg-warm transition-all duration-500"
+              className="h-full bg-[color:var(--color-brand)] transition-all duration-500"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -89,14 +89,14 @@ export default function Generating() {
                       done
                         ? 'bg-green-soft text-green'
                         : active
-                        ? 'bg-warm-soft'
+                        ? 'bg-[color:var(--color-brand-soft)]'
                         : 'bg-pill'
                     }`}
                   >
                     {done ? (
                       <Check size={11} strokeWidth={3} />
                     ) : active ? (
-                      <Loader2 size={11} className="text-warm hp-spin" />
+                      <Loader2 size={11} className="text-ink-soft hp-spin" />
                     ) : null}
                   </span>
                   <span>{s.label}</span>

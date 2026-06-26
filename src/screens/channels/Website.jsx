@@ -79,7 +79,7 @@ export default function Website() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5">
-                  <Gauge size={13} className="text-warm" />
+                  <Gauge size={13} className="text-ink-soft" />
                   <span className="text-[12px] text-ink font-medium">
                     SEO Score
                   </span>
@@ -88,7 +88,7 @@ export default function Website() {
                   {websiteMeta.seoScore}/100
                 </span>
               </div>
-              <ScoreBar value={websiteMeta.seoScore} tone="warm" />
+              <ScoreBar value={websiteMeta.seoScore} tone="brand" />
             </div>
             <button
               onClick={() =>
@@ -154,7 +154,7 @@ export default function Website() {
                 'Contacto',
               ].map((p) => (
                 <li key={p} className="flex items-center gap-1.5">
-                  <span className="w-1 h-1 rounded-full bg-warm" /> {p}
+                  <span className="w-1 h-1 rounded-full bg-ink-mute" /> {p}
                 </li>
               ))}
             </ul>

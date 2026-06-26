@@ -192,7 +192,7 @@ export default function GoogleBusiness() {
             <Field
               label="Descripción corta"
               hint={
-                <span className="text-warm">
+                <span className="text-[color:var(--color-brand-text)]">
                   ✦ generada con IA
                 </span>
               }
@@ -270,7 +270,7 @@ export default function GoogleBusiness() {
                   <img src={p} alt="" className="w-full h-full object-cover" />
                 </div>
               ))}
-              <button className="aspect-square rounded-md border border-dashed border-border-strong text-ink-soft hover:border-warm hover:text-warm flex items-center justify-center">
+              <button className="aspect-square rounded-md border border-dashed border-border-strong text-ink-soft hover:border-[color:var(--color-brand)] hover:text-[color:var(--color-brand-text)] flex items-center justify-center">
                 <Plus size={14} />
               </button>
             </div>

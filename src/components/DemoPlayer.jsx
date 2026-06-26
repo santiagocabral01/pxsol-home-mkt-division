@@ -183,7 +183,7 @@ function SparkBurst() {
             key={i}
             className="absolute left-0 top-0 w-1.5 h-1.5 rounded-full"
             style={{
-              background: i % 2 ? '#D4A853' : '#D4845A',
+              background: i % 2 ? '#D4A853' : '#e84a2c',
               '--sx': `${sx}px`,
               '--sy': `${sy}px`,
               animation: 'hpd-spark 0.55s ease-out forwards',
@@ -205,11 +205,11 @@ function CursorView({ cursor, clicking }) {
         <>
           <SparkBurst />
           <span
-            className="absolute -left-3 -top-3 w-9 h-9 rounded-full border-2 border-warm"
+            className="absolute -left-3 -top-3 w-9 h-9 rounded-full border-2 border-[color:var(--color-brand)]"
             style={{ animation: 'hpd-ripple 0.55s ease-out forwards' }}
           />
           <span
-            className="absolute -left-1.5 -top-1.5 w-4 h-4 rounded-full bg-warm/30"
+            className="absolute -left-1.5 -top-1.5 w-4 h-4 rounded-full bg-[color:var(--color-brand)]/30"
             style={{ animation: 'hpd-ripple 0.45s ease-out forwards' }}
           />
         </>
@@ -230,7 +230,7 @@ function CursorView({ cursor, clicking }) {
 
 /* CTA that lights + presses when "clicked". `shine` adds a sweeping sheen. */
 function CtaButton({ clicked, clicking, shine = false, variant = 'ink', className = '', children }) {
-  const base = variant === 'warm' ? 'bg-warm text-white' : 'bg-ink text-white'
+  const base = variant === 'brand' ? 'bg-[color:var(--color-brand)] text-white' : 'bg-ink text-white'
   return (
     <button
       className={`relative overflow-hidden inline-flex items-center justify-center gap-2 h-11 px-5 rounded-lg text-[13px] font-medium ${base} ${className}`}
@@ -238,7 +238,7 @@ function CtaButton({ clicked, clicking, shine = false, variant = 'ink', classNam
         transform: clicking ? 'scale(0.96)' : clicked ? 'scale(1.02)' : 'scale(1)',
         transition: 'transform 0.18s cubic-bezier(.3,1.4,.5,1), box-shadow 0.25s ease',
         boxShadow: clicked
-          ? '0 0 0 4px rgba(212,132,90,0.28), 0 10px 26px rgba(212,132,90,0.35)'
+          ? '0 0 0 4px rgba(232,74,44,0.28), 0 10px 26px rgba(232,74,44,0.35)'
           : '0 6px 18px rgba(0,0,0,0.15)',
       }}
     >
@@ -281,7 +281,7 @@ function DemoAvatar({ role }) {
   return (
     <span
       className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0"
-      style={{ background: 'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)' }}
     >
       <Sparkles size={11} className="text-white" strokeWidth={2.4} />
     </span>
@@ -321,7 +321,7 @@ function ChatHeader({ status }) {
     <div className="flex items-center gap-2 px-3.5 py-2 border-b border-border bg-surface-hover flex-shrink-0">
       <span
         className="w-6 h-6 rounded-full flex items-center justify-center"
-        style={{ background: 'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)' }}
       >
         <Sparkles size={11} className="text-white" strokeWidth={2.4} />
       </span>
@@ -342,7 +342,7 @@ function AppHeader({ step }) {
   return (
     <div className="flex items-center justify-between px-5 py-2.5 border-b border-border bg-card/70 backdrop-blur-sm flex-shrink-0">
       <div className="flex items-center gap-1.5">
-        <Sparkles size={13} className="text-warm" />
+        <Sparkles size={13} className="text-[color:var(--color-brand-text)]" />
         <span className="font-display text-[14px]">Hotel Presence</span>
       </div>
       <div className="flex items-center gap-1.5">
@@ -350,12 +350,16 @@ function AppHeader({ step }) {
           <span
             key={n}
             className={`h-1.5 rounded-full transition-all duration-500 ${
-              n === step ? 'w-5 bg-warm' : n < step ? 'w-1.5 bg-warm/50' : 'w-1.5 bg-border-strong'
+              n === step
+                ? 'w-5 bg-[color:var(--color-brand)]'
+                : n < step
+                ? 'w-1.5 bg-[color:var(--color-brand)]/50'
+                : 'w-1.5 bg-border-strong'
             }`}
           />
         ))}
       </div>
-      <span className="hp-pill" style={{ background: '#f7e7dc', color: '#d4845a' }}>
+      <span className="hp-pill" style={{ background: 'var(--color-brand-soft)', color: 'var(--color-brand-text)' }}>
         <Sparkles size={9} /> Demo en vivo
       </span>
     </div>
@@ -395,7 +399,7 @@ function HubFrame({ active, title, kicker, action, rootRef, children }) {
                 }`}
               >
                 {on && (
-                  <span className="absolute left-0 top-1.5 bottom-1.5 w-[2.5px] rounded-full bg-warm" />
+                  <span className="absolute left-0 top-1.5 bottom-1.5 w-[2.5px] rounded-full bg-[color:var(--color-brand)]" />
                 )}
                 <c.i size={13} strokeWidth={1.75} />
                 <span>{c.l}</span>
@@ -457,9 +461,9 @@ function SceneIntro({ t }) {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8 bg-bg">
         <div style={{ animation: 'hpd-float 4s ease-in-out infinite' }}>
           <span
-            className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[0_16px_40px_rgba(212,132,90,0.4)]"
+            className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-[0_16px_40px_rgba(232,74,44,0.4)]"
             style={{
-              background: 'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)',
+              background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)',
               animation: 'hpd-pop 0.6s ease-out both',
             }}
           >
@@ -491,7 +495,7 @@ function SceneIntro({ t }) {
           ))}
         </div>
         <div className="mt-6 hp-pill" style={{ animation: 'hpd-pop 0.5s ease-out 0.8s both' }}>
-          <span className="w-1.5 h-1.5 rounded-full bg-warm" style={{ animation: 'hpd-rec 1.2s infinite' }} />
+          <span className="w-1.5 h-1.5 rounded-full bg-[color:var(--color-brand)]" style={{ animation: 'hpd-rec 1.2s infinite' }} />
           Demo · 45 segundos
         </div>
       </div>
@@ -655,7 +659,7 @@ function SceneGenerating({ t }) {
       <ZoomLayer zoom={z}>
         <div className="absolute inset-0 flex items-center justify-center p-6">
           <div className="hp-card p-7 w-full max-w-[480px]">
-            <span className="hp-pill mb-4" style={{ background: '#f7e7dc', color: '#d4845a' }}>
+            <span className="hp-pill mb-4" style={{ background: 'var(--color-brand-soft)', color: 'var(--color-brand-text)' }}>
               ✦ Paso 3 — Generando todo tu hub
             </span>
             <div className="font-display text-[22px] leading-tight mt-3 mb-1">
@@ -672,7 +676,7 @@ function SceneGenerating({ t }) {
             <div className="h-1.5 rounded-full bg-pill overflow-hidden mb-6">
               <div
                 className="h-full rounded-full"
-                style={{ width: `${pct}%`, background: 'linear-gradient(90deg,#D4845A,#D4A853)' }}
+                style={{ width: `${pct}%`, background: 'linear-gradient(90deg,#e84a2c,#d03d21)' }}
               />
             </div>
 
@@ -685,13 +689,13 @@ function SceneGenerating({ t }) {
                   <div key={s.id} className="flex items-center gap-3 text-[12.5px]">
                     <span
                       className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-300 ${
-                        done ? 'bg-green-soft text-green' : active ? 'bg-warm-soft' : 'bg-pill'
+                        done ? 'bg-green-soft text-green' : active ? 'bg-[color:var(--color-brand-soft)]' : 'bg-pill'
                       }`}
                     >
                       {done ? (
                         <Check size={11} strokeWidth={3} />
                       ) : active ? (
-                        <Loader2 size={11} className="text-warm hp-spin" />
+                        <Loader2 size={11} className="text-[color:var(--color-ink-soft)] hp-spin" />
                       ) : null}
                     </span>
                     <span className={done || active ? 'text-ink' : 'text-ink-mute'}>{s.label}</span>
@@ -788,7 +792,7 @@ function SceneWebsite({ t }) {
                     <img src={room.image} alt="" className="w-full h-[52px] object-cover" />
                     <div className="p-1.5">
                       <div className="text-[9px] font-medium leading-tight truncate">{room.name}</div>
-                      <div className="text-[8px] text-warm mt-0.5">{room.price}</div>
+                      <div className="text-[8px] text-[color:var(--color-brand-text)] mt-0.5">{room.price}</div>
                     </div>
                   </div>
                 ))}
@@ -800,7 +804,7 @@ function SceneWebsite({ t }) {
             className="absolute top-2 left-7 hp-card px-3 py-1.5 flex items-center gap-2"
             style={{ animation: 'hpd-pop 0.5s ease-out 0.9s both', boxShadow: '0 10px 24px rgba(0,0,0,0.15)' }}
           >
-            <span className="w-7 h-7 rounded-full bg-warm-soft text-warm flex items-center justify-center font-display text-[13px]">
+            <span className="w-7 h-7 rounded-full bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)] flex items-center justify-center font-display text-[13px]">
               {websiteMeta.seoScore}
             </span>
             <div className="leading-tight">
@@ -906,10 +910,10 @@ function SceneGoogleBusiness({ t }) {
             <p className="text-[11.5px] text-ink-soft leading-relaxed mt-3">{review.text}</p>
 
             <div
-              className="mt-3 border-l-2 border-warm bg-warm-soft/40 rounded-r-lg p-3 transition-shadow duration-500"
-              style={{ boxShadow: replyDone ? '0 0 0 2px rgba(212,132,90,0.2)' : 'none' }}
+              className="mt-3 border-l-2 border-[color:var(--color-brand)] bg-[color:var(--color-brand-soft)]/40 rounded-r-lg p-3 transition-shadow duration-500"
+              style={{ boxShadow: replyDone ? '0 0 0 2px rgba(232,74,44,0.2)' : 'none' }}
             >
-              <div className="flex items-center gap-1.5 text-[9px] text-warm font-medium uppercase tracking-wide mb-1.5">
+              <div className="flex items-center gap-1.5 text-[9px] text-[color:var(--color-brand-text)] font-medium uppercase tracking-wide mb-1.5">
                 <Sparkles size={10} className={replyDone ? '' : 'hp-pulse'} /> Respuesta sugerida · en tu tono
               </div>
               <p className="text-[11.5px] text-ink leading-relaxed">
@@ -991,7 +995,7 @@ function SceneOutro({ onStart }) {
     >
       <div
         className="absolute -top-24 -right-24 w-[300px] h-[300px] rounded-full opacity-40"
-        style={{ background: 'radial-gradient(circle, #D4845A 0%, transparent 70%)', animation: 'hpd-float 5s ease-in-out infinite' }}
+        style={{ background: 'radial-gradient(circle, #e84a2c 0%, transparent 70%)', animation: 'hpd-float 5s ease-in-out infinite' }}
       />
       <div
         className="absolute -bottom-24 -left-24 w-[300px] h-[300px] rounded-full opacity-25"
@@ -999,7 +1003,7 @@ function SceneOutro({ onStart }) {
       />
       <div className="relative">
         <div className="hp-pill mx-auto w-fit mb-5" style={{ animation: 'hpd-pop 0.5s ease-out both' }}>
-          <Sparkles size={11} className="text-warm" /> En menos de 6 minutos
+          <Sparkles size={11} className="text-[color:var(--color-brand-text)]" /> En menos de 6 minutos
         </div>
         <div
           className="font-display text-[34px] leading-tight text-white max-w-[460px] mx-auto"
@@ -1015,7 +1019,7 @@ function SceneOutro({ onStart }) {
         </p>
         <button
           onClick={onStart}
-          className="mt-7 bg-warm text-white h-12 px-7 rounded-lg inline-flex items-center gap-2 text-[14px] font-medium hover:bg-[#c2754d] transition-colors"
+          className="mt-7 bg-[color:var(--color-brand)] text-white h-12 px-7 rounded-lg inline-flex items-center gap-2 text-[14px] font-medium hover:bg-[color:var(--color-brand-hover)] transition-colors"
           style={{ animation: 'hpd-pop 0.5s ease-out 0.4s both' }}
         >
           Comenzar gratis <ArrowRight size={16} />
@@ -1143,7 +1147,7 @@ export default function DemoPlayer({ onClose, onStart }) {
             className="absolute inset-0 opacity-70"
             style={{
               background:
-                'radial-gradient(38% 50% at 28% 30%, rgba(212,132,90,0.55), transparent 70%), radial-gradient(40% 50% at 74% 72%, rgba(212,168,83,0.45), transparent 70%)',
+                'radial-gradient(38% 50% at 28% 30%, rgba(232,74,44,0.55), transparent 70%), radial-gradient(40% 50% at 74% 72%, rgba(212,168,83,0.45), transparent 70%)',
               filter: 'blur(36px)',
               animation: 'hpd-bg-pan 9s ease-in-out infinite',
             }}
@@ -1203,7 +1207,7 @@ export default function DemoPlayer({ onClose, onStart }) {
                     className="absolute inset-y-0 left-0 rounded-full"
                     style={{
                       width: `${local * 100}%`,
-                      background: i <= idx ? 'linear-gradient(90deg,#D4845A,#D4A853)' : 'transparent',
+                      background: i <= idx ? 'linear-gradient(90deg,#e84a2c,#d03d21)' : 'transparent',
                     }}
                   />
                 </button>
@@ -1213,7 +1217,7 @@ export default function DemoPlayer({ onClose, onStart }) {
 
           <button
             onClick={onStart}
-            className="hidden sm:inline-flex items-center gap-1.5 bg-warm text-white text-[12px] font-medium px-3.5 h-8 rounded-lg hover:bg-[#c2754d] transition-colors flex-shrink-0"
+            className="hidden sm:inline-flex items-center gap-1.5 bg-[color:var(--color-brand)] text-white text-[12px] font-medium px-3.5 h-8 rounded-lg hover:bg-[color:var(--color-brand-hover)] transition-colors flex-shrink-0"
           >
             Comenzar gratis <ArrowRight size={13} />
           </button>

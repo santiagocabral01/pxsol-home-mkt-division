@@ -1,7 +1,7 @@
-export default function ScoreBar({ value, max = 100, tone = 'warm', size = 'md' }) {
+export default function ScoreBar({ value, max = 100, tone = 'brand', size = 'md' }) {
   const pct = Math.max(0, Math.min(100, (value / max) * 100))
   const tones = {
-    warm: 'bg-warm',
+    brand: 'bg-[color:var(--color-brand)]',
     cool: 'bg-cool',
     green: 'bg-green',
     amber: 'bg-amber',

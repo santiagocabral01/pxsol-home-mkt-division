@@ -19,7 +19,7 @@ import ChatFlow from '../../components/ChatFlow'
 function ScoreCard() {
   const rows = [
     { k: 'Global', v: 71, d: '+6', color: '#1a1a1a' },
-    { k: 'SEO', v: 78, d: '+4', color: '#D4845A' },
+    { k: 'SEO', v: 78, d: '+4', color: '#e84a2c' },
     { k: 'GEO (IA)', v: 64, d: '+11', color: '#5B8FBF' },
   ]
   return (
@@ -67,7 +67,7 @@ function RecoList() {
     <div className="w-[300px] space-y-2.5">
       {items.map((it, i) => (
         <div key={i} className="flex gap-2.5">
-          <span className="w-7 h-7 rounded-lg bg-warm-soft text-warm flex items-center justify-center flex-shrink-0">
+          <span className="w-7 h-7 rounded-lg bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)] flex items-center justify-center flex-shrink-0">
             <it.icon size={14} strokeWidth={1.9} />
           </span>
           <div>
@@ -169,7 +169,7 @@ export default function Assistant() {
         title="Pedile análisis y mejoras a tu asistente."
         subtitle="Chateá con la IA para revisar tu visibilidad, entender dónde estás perdiendo posiciones y pedir contenido — todo con el contexto de tu hotel."
         right={
-          <Pill tone="warm">
+          <Pill tone="brand">
             <Sparkles size={11} /> Demo en vivo
           </Pill>
         }
@@ -179,7 +179,7 @@ export default function Assistant() {
         <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border bg-surface-hover">
           <span
             className="w-8 h-8 rounded-full flex items-center justify-center"
-            style={{ background: 'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)' }}
+            style={{ background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)' }}
           >
             <Sparkles size={15} className="text-white" strokeWidth={2.4} />
           </span>

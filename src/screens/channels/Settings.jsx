@@ -100,7 +100,7 @@ export default function Settings() {
           <div>
             <div className="text-[13px] text-ink font-medium mb-1">Plan</div>
             <div className="flex items-center gap-2">
-              <Pill tone="warm">Pro · Mensual</Pill>
+              <Pill tone="neutral">Pro · Mensual</Pill>
               <span className="text-[12px] text-ink-soft">
                 USD 89/mes · próxima factura 1 jul
               </span>

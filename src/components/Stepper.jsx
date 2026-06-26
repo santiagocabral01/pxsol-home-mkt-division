@@ -19,7 +19,7 @@ export default function Stepper({ current = 1 }) {
                   isActive
                     ? 'bg-ink text-white'
                     : isDone
-                    ? 'bg-warm-soft text-warm'
+                    ? 'bg-pill text-ink-soft'
                     : 'bg-pill text-ink-mute'
                 }`}
               >

@@ -53,7 +53,7 @@ export default function EmailMarketing() {
                   key={c.id}
                   onClick={() => setSelected(c.id)}
                   className={`w-full text-left px-3 py-3 rounded-lg transition group ${
-                    active ? 'bg-warm-soft' : 'hover:bg-surface-hover'
+                    active ? 'bg-[color:var(--color-brand-soft)]' : 'hover:bg-surface-hover'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2 mb-1">
@@ -67,7 +67,7 @@ export default function EmailMarketing() {
                     <ChevronRight
                       size={14}
                       className={`flex-shrink-0 mt-0.5 transition-transform ${
-                        active ? 'text-warm translate-x-0.5' : 'text-ink-mute'
+                        active ? 'text-[color:var(--color-brand-text)] translate-x-0.5' : 'text-ink-mute'
                       }`}
                     />
                   </div>
@@ -127,7 +127,7 @@ export default function EmailMarketing() {
           <div className="hp-card overflow-hidden">
             {/* email client topbar */}
             <div className="px-5 py-3 border-b border-border flex items-center gap-3 bg-surface-hover">
-              <div className="w-7 h-7 rounded-full bg-warm-soft text-warm flex items-center justify-center text-[11px] font-medium">
+              <div className="w-7 h-7 rounded-full bg-pill text-ink-soft flex items-center justify-center text-[11px] font-medium">
                 HM
               </div>
               <div className="flex-1">

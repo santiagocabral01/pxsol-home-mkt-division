@@ -11,8 +11,10 @@
   --color-pill: #f3f3f1;
   --color-surface-hover: #f7f7f5;
 
-  --color-warm: #d4845a;
-  --color-warm-soft: #f7e7dc;
+  --color-brand:       #e84a2c;   /* rojo PXSOL — fills: botones, dots, barras, bordes */
+  --color-brand-hover: #d03d21;   /* hover de CTA */
+  --color-brand-text:  #b8321a;   /* marca como texto sobre fondo claro — 5.3:1 AA */
+  --color-brand-soft:  #fdecea;   /* fondo suave: badges, estados activos, selection */
   --color-cool: #5b8fbf;
   --color-cool-soft: #e1ecf5;
   --color-green: #6baf8a;
@@ -81,14 +83,14 @@
   }
 
   ::selection {
-    background: var(--color-warm-soft);
+    background: var(--color-brand-soft);
     color: var(--color-ink);
   }
 }
 
 @utility hp-underline {
   text-decoration: underline;
-  text-decoration-color: var(--color-warm);
+  text-decoration-color: var(--color-brand-text);
   text-decoration-thickness: 3px;
   text-underline-offset: 6px;
 }
@@ -481,10 +483,10 @@
 @keyframes hpd-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(212, 132, 90, 0);
+    box-shadow: 0 0 0 0 rgba(232, 74, 44, 0);
   }
   50% {
-    box-shadow: 0 0 0 7px rgba(212, 132, 90, 0.22);
+    box-shadow: 0 0 0 7px rgba(232, 74, 44, 0.22);
   }
 }
 

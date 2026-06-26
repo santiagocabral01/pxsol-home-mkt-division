@@ -108,7 +108,7 @@ export default function SeoAnalytics() {
       {/* Oportunidades */}
       <div className="hp-card p-6 mb-6">
         <div className="flex items-center gap-2 mb-3">
-          <Sparkles size={14} className="text-warm" />
+          <Sparkles size={14} className="text-[color:var(--color-brand-text)]" />
           <div className="font-display text-[18px] text-ink">Oportunidades</div>
         </div>
         <p className="text-[13px] text-ink-soft mb-5">
@@ -118,9 +118,9 @@ export default function SeoAnalytics() {
           {opportunities.map((k) => (
             <div
               key={k.term}
-              className="flex items-center gap-3 p-3 rounded-lg border border-border bg-warm-soft/30 hover:bg-warm-soft/50 transition"
+              className="flex items-center gap-3 p-3 rounded-lg border border-border bg-[color:var(--color-brand-soft)]/30 hover:bg-[color:var(--color-brand-soft)]/50 transition"
             >
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-warm text-white flex items-center justify-center font-mono text-[13px]">
+              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-[color:var(--color-brand)] text-white flex items-center justify-center font-mono text-[13px]">
                 #{Math.round(k.position)}
               </div>
               <div className="flex-1 min-w-0">
@@ -154,7 +154,7 @@ export default function SeoAnalytics() {
               Ordenable por cualquier columna. Las marcadas en ámbar son oportunidades.
             </div>
           </div>
-          <Pill tone="warm">
+          <Pill tone="neutral">
             <TrendingUp size={11} /> Últimos 28 días
           </Pill>
         </div>
@@ -177,7 +177,7 @@ export default function SeoAnalytics() {
                     {c.label}
                     <ArrowUpDown
                       size={10}
-                      className={sort.col === c.id ? 'text-warm' : 'opacity-30'}
+                      className={sort.col === c.id ? 'text-[color:var(--color-brand-text)]' : 'opacity-30'}
                     />
                   </span>
                 </th>
@@ -189,7 +189,7 @@ export default function SeoAnalytics() {
               <tr
                 key={k.term}
                 className={`border-b border-border last:border-0 hover:bg-surface-hover transition ${
-                  k.isOpportunity ? 'bg-warm-soft/20' : ''
+                  k.isOpportunity ? 'bg-[color:var(--color-brand-soft)]/20' : ''
                 }`}
               >
                 <td className="px-6 py-3 text-[13px] text-ink">{k.term}</td>
@@ -273,7 +273,7 @@ function SummaryCard({ label, value, delta, tone, deltaHint }) {
         {label}
       </div>
       <div className="font-mono text-[32px] text-ink leading-none mb-2">{value}</div>
-      <div className={`text-[11px] inline-flex items-center gap-1 ${tone === 'green' ? 'text-green' : 'text-warm'}`}>
+      <div className={`text-[11px] inline-flex items-center gap-1 ${tone === 'green' ? 'text-green' : 'text-[color:var(--color-brand-text)]'}`}>
         <TrendingUp size={11} />
         {delta}
         {deltaHint && <span className="text-ink-soft ml-1">{deltaHint}</span>}

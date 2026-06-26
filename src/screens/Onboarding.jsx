@@ -86,18 +86,18 @@ export default function Onboarding() {
     <div className="min-h-screen w-full">
       <header className="flex items-center justify-between px-10 py-6 border-b border-border bg-card/60 backdrop-blur-sm">
         <div className="flex items-center gap-2">
-          <Sparkles size={16} className="text-warm" />
+          <Sparkles size={16} className="text-[color:var(--color-brand-text)]" />
           <span className="font-display text-[18px]">Hotel Presence</span>
         </div>
         <Stepper current={1} />
-        <Pill tone="warm">
+        <Pill tone="brand">
           <Sparkles size={11} /> Demo en vivo
         </Pill>
       </header>
 
       <div className="max-w-[1100px] mx-auto px-10 py-12 grid grid-cols-[1.05fr_0.95fr] gap-16 items-start">
         <section className="hp-fade-in">
-          <Pill tone="warm" className="mb-5">
+          <Pill tone="neutral" className="mb-5">
             ✦ Paso 1 — Contanos sobre tu hotel
           </Pill>
           <Headline
@@ -120,7 +120,7 @@ export default function Onboarding() {
                 className="w-8 h-8 rounded-full flex items-center justify-center"
                 style={{
                   background:
-                    'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)',
+                    'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)',
                 }}
               >
                 <Sparkles size={15} className="text-white" strokeWidth={2.4} />
@@ -180,7 +180,7 @@ export default function Onboarding() {
                 <span className="text-[11px] uppercase tracking-wider text-ink-mute">
                   Vista previa del hub
                 </span>
-                <Pill tone={done ? 'green' : 'warm'}>
+                <Pill tone={done ? 'green' : 'neutral'}>
                   {done ? (
                     <>
                       <Check size={11} /> listo

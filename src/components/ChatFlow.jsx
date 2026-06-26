@@ -30,7 +30,7 @@ function Avatar({ role }) {
   return (
     <span
       className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
-      style={{ background: 'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #e84a2c 0%, #d03d21 100%)' }}
     >
       <Sparkles size={13} className="text-white" strokeWidth={2.4} />
     </span>

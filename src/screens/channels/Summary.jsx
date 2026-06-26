@@ -58,7 +58,7 @@ export default function Summary() {
             </span>
             <span className="text-ink-soft text-[14px]">/ 100</span>
           </div>
-          <ScoreBar value={summary.presenceScore} tone="warm" />
+          <ScoreBar value={summary.presenceScore} tone="brand" />
           <div className="flex items-center gap-1.5 mt-3 text-[11px] text-green">
             <TrendingUp size={11} /> +18 puntos esta semana
           </div>
@@ -119,7 +119,7 @@ export default function Summary() {
               Estado actualizado hace 12 minutos
             </div>
           </div>
-          <Pill tone="warm">✦ Generado con IA</Pill>
+          <Pill tone="brand">✦ Generado con IA</Pill>
         </div>
         <table className="w-full">
           <thead>
@@ -167,7 +167,7 @@ export default function Summary() {
       {/* Recomendaciones */}
       <div className="hp-card p-6 mt-6">
         <div className="flex items-center gap-2 mb-4">
-          <Sparkles size={14} className="text-warm" />
+          <Sparkles size={14} className="text-[color:var(--color-brand-text)]" />
           <span className="text-[11px] uppercase tracking-wider text-ink font-medium">
             Próximos pasos sugeridos
           </span>
@@ -187,7 +187,7 @@ export default function Summary() {
             {
               t: 'Respondé las 3 reseñas pendientes',
               s: 'Las propiedades que responden todas las reseñas convierten 31% más.',
-              tone: 'warm',
+              tone: 'brand',
             },
           ].map((r) => (
             <div
@@ -198,8 +198,8 @@ export default function Summary() {
                 className={`mt-1 w-1.5 h-1.5 rounded-full bg-${r.tone}`}
                 style={{
                   background:
-                    r.tone === 'warm'
-                      ? '#D4845A'
+                    r.tone === 'brand'
+                      ? '#e84a2c'
                       : r.tone === 'cool'
                       ? '#5B8FBF'
                       : '#D4A853',
