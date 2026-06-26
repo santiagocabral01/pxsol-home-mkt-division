@@ -18,6 +18,14 @@ function StatusPill({ status }) {
   return <Pill tone={tone}>{status}</Pill>
 }
 
+/* Acento producto: crm — amarillo (#7A6600 dark · #EAC300 base · #F3E291 soft)
+   --color-accent-dark (#7A6600) ~6:1 sobre blanco → pasa WCAG AA texto pequeño. */
+const CRM_ACCENT = {
+  '--color-accent':      '#EAC300',
+  '--color-accent-dark': '#7A6600',
+  '--color-accent-soft': '#F3E291',
+}
+
 export default function EmailMarketing() {
   const [selected, setSelected] = useState(emailCampaigns[0].id)
   const { hotel, brand } = useHotel()
@@ -26,7 +34,7 @@ export default function EmailMarketing() {
   const accent = brand.palette[1]?.hex || '#D4A853'
 
   return (
-    <div className="px-10 py-10 max-w-[1400px] mx-auto">
+    <div className="px-10 py-10 max-w-[1400px] mx-auto" style={CRM_ACCENT}>
       <ChannelHeader
         eyebrow="Canal · Email Marketing"
         highlight="recuerden"
@@ -53,7 +61,7 @@ export default function EmailMarketing() {
                   key={c.id}
                   onClick={() => setSelected(c.id)}
                   className={`w-full text-left px-3 py-3 rounded-lg transition group ${
-                    active ? 'bg-[color:var(--color-brand-soft)]' : 'hover:bg-surface-hover'
+                    active ? 'bg-[color:var(--color-accent-soft)]' : 'hover:bg-surface-hover'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2 mb-1">
@@ -67,8 +75,9 @@ export default function EmailMarketing() {
                     <ChevronRight
                       size={14}
                       className={`flex-shrink-0 mt-0.5 transition-transform ${
-                        active ? 'text-[color:var(--color-brand-text)] translate-x-0.5' : 'text-ink-mute'
+                        active ? 'translate-x-0.5' : 'text-ink-mute'
                       }`}
+                      style={active ? { color: 'var(--color-accent-dark)' } : undefined}
                     />
                   </div>
                   <div className="text-[11px] text-ink-soft mb-2">{c.detail}</div>

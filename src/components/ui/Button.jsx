@@ -26,13 +26,13 @@ export default function Button({
       'bg-[color:var(--color-brand)] text-white hover:bg-[color:var(--color-brand-hover)]',
   }
   const sizes = {
-    sm: 'h-8 px-3 text-[12px] rounded-md gap-1.5',
-    md: 'h-10 px-4 text-[13px] rounded-lg gap-2',
-    lg: 'h-12 px-6 text-[14px] rounded-lg gap-2',
+    sm: 'h-8 px-3 text-[12px] rounded-full gap-1.5',
+    md: 'h-10 px-4 text-[13px] rounded-full gap-2',
+    lg: 'h-12 px-6 text-[14px] rounded-full gap-2',
   }
   return (
     <button
-      className={`inline-flex items-center justify-center font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand)] focus-visible:ring-offset-2 ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`inline-flex items-center justify-center font-medium transition-all duration-150 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--color-brand)] focus-visible:ring-offset-2 ${variants[variant]} ${sizes[size]} ${className}`}
       {...rest}
     >
       {children}

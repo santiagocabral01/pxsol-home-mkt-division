@@ -11,7 +11,12 @@ export default function ChannelHeader({
     <div className="flex items-end justify-between gap-6 mb-8">
       <div>
         {eyebrow && (
-          <div className="text-[11px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-2">
+          /* Usa --color-accent-dark (texto sobre claro) para que cada vista de canal
+             pueda sobreescribir el acento sin problemas de contraste. */
+          <div
+            className="text-[11px] uppercase tracking-[0.12em] font-medium mb-2"
+            style={{ color: 'var(--color-accent-dark)' }}
+          >
             {eyebrow}
           </div>
         )}

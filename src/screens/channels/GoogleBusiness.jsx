@@ -35,6 +35,14 @@ function StarRow({ value }) {
   )
 }
 
+/* Acento producto: ads — azul (#0C73A6 dark · #3CAEE7 base · #CBE4F1 soft)
+   --color-accent-dark (#0C73A6) ~5:1 sobre blanco → pasa WCAG AA texto pequeño. */
+const ADS_ACCENT = {
+  '--color-accent':      '#3CAEE7',
+  '--color-accent-dark': '#0C73A6',
+  '--color-accent-soft': '#CBE4F1',
+}
+
 export default function GoogleBusiness() {
   const [data, setData] = useState(gb)
   const [openReply, setOpenReply] = useState(null)
@@ -49,7 +57,7 @@ export default function GoogleBusiness() {
     }))
 
   return (
-    <div className="px-10 py-10 max-w-[1400px] mx-auto">
+    <div className="px-10 py-10 max-w-[1400px] mx-auto" style={ADS_ACCENT}>
       <ChannelHeader
         eyebrow="Canal · Google Business Profile"
         highlight="encuentren"
@@ -192,7 +200,7 @@ export default function GoogleBusiness() {
             <Field
               label="Descripción corta"
               hint={
-                <span className="text-[color:var(--color-brand-text)]">
+                <span style={{ color: 'var(--color-accent-dark)' }}>
                   ✦ generada con IA
                 </span>
               }
@@ -270,7 +278,7 @@ export default function GoogleBusiness() {
                   <img src={p} alt="" className="w-full h-full object-cover" />
                 </div>
               ))}
-              <button className="aspect-square rounded-md border border-dashed border-border-strong text-ink-soft hover:border-[color:var(--color-brand)] hover:text-[color:var(--color-brand-text)] flex items-center justify-center">
+              <button className="aspect-square rounded-md border border-dashed border-border-strong text-ink-soft hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent-dark)] flex items-center justify-center">
                 <Plus size={14} />
               </button>
             </div>

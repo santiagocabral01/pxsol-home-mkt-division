@@ -23,6 +23,14 @@ function AmenityChip({ label, onRemove }) {
   )
 }
 
+/* Acento producto: channel — naranja (#A34100 dark · #FF7316 base · #F7D0B6 soft)
+   --color-accent-dark (#A34100) ~6:1 sobre blanco → pasa WCAG AA texto pequeño. */
+const CHANNEL_ACCENT = {
+  '--color-accent':      '#FF7316',
+  '--color-accent-dark': '#A34100',
+  '--color-accent-soft': '#F7D0B6',
+}
+
 export default function OTAs() {
   const [active, setActive] = useState(otaList[0])
   const [data, setData] = useState({ otas, rooms: otaRooms })
@@ -44,7 +52,7 @@ export default function OTAs() {
   }
 
   return (
-    <div className="px-10 py-10 max-w-[1400px] mx-auto">
+    <div className="px-10 py-10 max-w-[1400px] mx-auto" style={CHANNEL_ACCENT}>
       <ChannelHeader
         eyebrow="Canal · OTAs / Booking"
         highlight="adaptado"
@@ -70,7 +78,7 @@ export default function OTAs() {
             >
               {o}
               {isActive && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[color:var(--color-brand)]" />
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[color:var(--color-accent)]" />
               )}
             </button>
           )
