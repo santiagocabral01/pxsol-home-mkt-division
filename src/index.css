@@ -27,7 +27,7 @@
   --color-destructive-soft: #fce8ed;
 
   --font-heading: 'Work Sans', 'Inter', system-ui, sans-serif;  /* UI de producto: nav, modales, dashboards, títulos de sección */
-  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; /* editorial/marketing: landing, previews del hotel, wordmark */
+  --font-display: 'Work Sans', 'Helvetica Neue', Arial, sans-serif; /* DS puro: Work Sans (antes Playfair) */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 

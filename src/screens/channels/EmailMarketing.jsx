@@ -160,7 +160,7 @@ export default function EmailMarketing() {
                 <div
                   className="font-display text-[24px]"
                   style={{
-                    fontFamily: 'Playfair Display, serif',
+                    fontFamily: 'var(--font-display)',
                     letterSpacing: '0.04em',
                   }}
                 >
@@ -179,7 +179,7 @@ export default function EmailMarketing() {
                 <h2
                   className="text-[26px] mb-4"
                   style={{
-                    fontFamily: 'Playfair Display, serif',
+                    fontFamily: 'var(--font-display)',
                     color: primary,
                     lineHeight: 1.15,
                   }}
