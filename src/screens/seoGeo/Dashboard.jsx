@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {
   TrendingUp,
   TrendingDown,
@@ -22,16 +22,22 @@ const rangeOptions = [
   { id: '90d', label: '90 días' },
 ]
 
+/*
+ * Delta — indicador de variación numérica.
+ * Negativo usa amber (#8B6F1F) para no colisionar con marca roja (QA punto 2).
+ * Ícono de dirección presente siempre → no depende solo del color (WCAG 1.4.1).
+ */
 function Delta({ value, suffix = '' }) {
   const positive = value > 0
   const Icon = positive ? TrendingUp : TrendingDown
   return (
     <span
       className={`inline-flex items-center gap-0.5 text-[11px] font-medium ${
-        positive ? 'text-green' : 'text-warm'
+        positive ? 'text-green' : 'text-[#8B6F1F]'
       }`}
+      aria-label={`${positive ? 'Subió' : 'Bajó'} ${Math.abs(value)}${suffix}`}
     >
-      <Icon size={11} />
+      <Icon size={11} aria-hidden="true" />
       {positive ? '+' : ''}
       {value}
       {suffix}
@@ -61,7 +67,7 @@ export default function Dashboard() {
         subtitle="Tu score global y todo lo que está moviendo la aguja esta semana — en orgánico de Google y en las nuevas referencias de ChatGPT, Perplexity y Google AI Overviews."
         right={
           <div className="flex items-center gap-2">
-            <Pill tone="warm">
+            <Pill tone="brand">
               <Sparkles size={11} /> IA monitoreando 12 motores
             </Pill>
           </div>
@@ -98,7 +104,11 @@ export default function Dashboard() {
                   <Delta value={visibilityOverview.delta.seo} />
                 </div>
               </div>
-              <ScoreBar value={visibilityOverview.seoScore} tone="warm" />
+              <ScoreBar
+                value={visibilityOverview.seoScore}
+                tone="brand"
+                label="Score SEO orgánico"
+              />
               <div className="text-[11px] text-ink-mute mt-2">
                 Google · Bing · Yandex
               </div>
@@ -113,7 +123,11 @@ export default function Dashboard() {
                   <Delta value={visibilityOverview.delta.geo} />
                 </div>
               </div>
-              <ScoreBar value={visibilityOverview.geoScore} tone="cool" />
+              <ScoreBar
+                value={visibilityOverview.geoScore}
+                tone="cool"
+                label="Score GEO (motores de IA)"
+              />
               <div className="text-[11px] text-ink-mute mt-2">
                 ChatGPT · Perplexity · Google AI · Claude
               </div>
@@ -128,7 +142,7 @@ export default function Dashboard() {
               <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-1">
                 Evolución
               </div>
-              <div className="font-display text-[18px] text-ink">
+              <div className="font-heading text-[18px] font-medium tracking-tight text-ink">
                 SEO vs GEO
               </div>
             </div>
@@ -151,7 +165,7 @@ export default function Dashboard() {
           <LineChart series={series} height={170} />
           <div className="flex items-center gap-4 mt-3 text-[11px] text-ink-soft">
             <span className="inline-flex items-center gap-1.5">
-              <span className="w-2.5 h-0.5 bg-warm rounded" /> SEO
+              <span className="w-2.5 h-0.5 bg-[color:var(--color-brand)] rounded" /> SEO
             </span>
             <span className="inline-flex items-center gap-1.5">
               <span className="w-2.5 h-0.5 bg-cool rounded" /> GEO
@@ -169,7 +183,7 @@ export default function Dashboard() {
           deltaTone="green"
           icon={Bot}
           accent="cool"
-          onClick={() => navigate('/app/hub/seo-geo/geo-tracker')}
+          to="/app/hub/seo-geo/geo-tracker"
         />
         <KpiCard
           label="Posición promedio en Google"
@@ -177,8 +191,8 @@ export default function Dashboard() {
           deltaLabel="-1.2 puestos (mejora)"
           deltaTone="green"
           icon={TrendingUp}
-          accent="warm"
-          onClick={() => navigate('/app/hub/seo-geo/seo')}
+          accent="brand"
+          to="/app/hub/seo-geo/seo"
         />
         <KpiCard
           label="Páginas indexadas"
@@ -187,7 +201,7 @@ export default function Dashboard() {
           deltaTone="green"
           icon={FileText}
           accent="green"
-          onClick={() => navigate('/app/hub/seo-geo/seo')}
+          to="/app/hub/seo-geo/seo"
         />
       </div>
 
@@ -195,12 +209,12 @@ export default function Dashboard() {
       <div className="hp-card overflow-hidden">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between">
           <div>
-            <div className="font-display text-[20px]">Alertas automáticas</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Alertas automáticas</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Lo que cambió en tu visibilidad — clic para ver el detalle.
             </div>
           </div>
-          <Pill tone="warm">
+          <Pill tone="brand">
             <Sparkles size={11} /> Generadas por IA
           </Pill>
         </div>
@@ -217,8 +231,8 @@ export default function Dashboard() {
                     ? 'bg-green-soft text-green'
                     : a.tone === 'cool'
                     ? 'bg-cool-soft text-cool'
-                    : a.tone === 'warm'
-                    ? 'bg-warm-soft text-warm'
+                    : a.tone === 'brand'
+                    ? 'bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)]'
                     : 'bg-amber-soft text-[#8B6F1F]'
                 }`}
               >
@@ -259,17 +273,20 @@ export default function Dashboard() {
   )
 }
 
-function KpiCard({ label, value, deltaLabel, deltaTone, icon: Icon, accent, onClick }) {
+function KpiCard({ label, value, deltaLabel, deltaTone, icon: Icon, accent, to }) {
   const accents = {
-    warm: 'bg-warm-soft text-warm',
+    brand: 'bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)]',
     cool: 'bg-cool-soft text-cool',
     green: 'bg-green-soft text-green',
   }
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="hp-card p-5 text-left hover:shadow-[var(--shadow-card-hover)] transition group"
+    /*
+     * KpiCard navega a otra pantalla — usar Link en vez de <button onClick={navigate}>
+     * para semántica correcta y accesibilidad de teclado (WCAG 4.1.2).
+     */
+    <Link
+      to={to}
+      className="hp-card p-5 text-left hover:shadow-[var(--shadow-card-hover)] transition group block"
     >
       <div className="flex items-start justify-between mb-3">
         <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium">
@@ -282,31 +299,34 @@ function KpiCard({ label, value, deltaLabel, deltaTone, icon: Icon, accent, onCl
       <div className="flex items-baseline gap-2 mb-1">
         <span className="font-mono text-[34px] text-ink leading-none">{value}</span>
       </div>
-      <div className={`text-[11px] ${deltaTone === 'green' ? 'text-green' : 'text-warm'}`}>
+      <div className={`text-[11px] ${deltaTone === 'green' ? 'text-green' : 'text-[#8B6F1F]'}`}>
         {deltaLabel}
       </div>
       <div className="opacity-0 group-hover:opacity-100 transition text-[11px] text-ink-soft mt-3 inline-flex items-center gap-1">
         Ver detalle <ArrowUpRight size={11} />
       </div>
-    </button>
+    </Link>
   )
 }
 
+/*
+ * QuickLink — card de navegación a una sección del hub.
+ * Usa <Link> de React Router para semántica correcta (WCAG 4.1.2).
+ */
 function QuickLink({ title, desc, to }) {
-  const navigate = useNavigate()
   return (
-    <button
-      onClick={() => navigate(to)}
-      className="hp-card p-5 text-left hover:shadow-[var(--shadow-card-hover)] transition group"
+    <Link
+      to={to}
+      className="hp-card p-5 text-left hover:shadow-[var(--shadow-card-hover)] transition group block"
     >
       <div className="flex items-center justify-between mb-1">
-        <div className="font-display text-[18px] text-ink">{title}</div>
+        <div className="font-heading text-[18px] font-medium tracking-tight text-ink">{title}</div>
         <ArrowUpRight
           size={14}
-          className="text-ink-mute group-hover:text-warm transition"
+          className="text-ink-mute group-hover:text-[color:var(--color-brand-text)] transition"
         />
       </div>
       <div className="text-[12px] text-ink-soft">{desc}</div>
-    </button>
+    </Link>
   )
 }

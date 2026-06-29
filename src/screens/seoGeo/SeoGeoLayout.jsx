@@ -27,8 +27,8 @@ export default function SeoGeoLayout() {
       <div className="sticky top-0 z-20 bg-bg/85 backdrop-blur-md border-b border-border">
         <div className="px-10 pt-5 pb-0 max-w-[1400px] mx-auto">
           <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-2">
-            <span className="inline-flex items-center gap-1.5 text-warm">
-              <span className="w-1 h-1 rounded-full bg-warm" />
+            <span className="inline-flex items-center gap-1.5 text-[color:var(--color-brand-text)]">
+              <span className="w-1 h-1 rounded-full bg-[color:var(--color-brand)]" />
               SEO / GEO con IA
             </span>
             <span className="text-ink-mute">·</span>
@@ -43,7 +43,7 @@ export default function SeoGeoLayout() {
                 className={({ isActive }) =>
                   `inline-flex items-center gap-1.5 px-3 h-10 text-[13px] border-b-2 transition-colors whitespace-nowrap ${
                     isActive
-                      ? 'border-warm text-ink font-medium'
+                      ? 'border-[color:var(--color-brand)] text-ink font-medium'
                       : 'border-transparent text-ink-soft hover:text-ink'
                   }`
                 }

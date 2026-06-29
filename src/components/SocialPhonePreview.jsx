@@ -391,7 +391,8 @@ function InstagramScreen({ posts, view, setView, onOpen }) {
       <div className="flex-1 min-h-0 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
         <div className="px-4 pt-1">
           <div className="flex items-center gap-6">
-            <div className="p-[2.5px] rounded-full bg-gradient-to-tr from-amber via-warm to-[#C13584]">
+            {/* Gradiente de Instagram Stories — intencional, NO es la marca PXSOL */}
+            <div className="p-[2.5px] rounded-full bg-gradient-to-tr from-amber via-[#d4845a] to-[#C13584]">
               <img
                 src={p.avatar}
                 alt=""

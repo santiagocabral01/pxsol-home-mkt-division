@@ -28,7 +28,7 @@ export default function Modal({ open, onClose, children, title, maxWidth = 'max-
           <X size={16} />
         </button>
         {title && (
-          <h3 className="font-display text-2xl mb-3 pr-8">{title}</h3>
+          <h3 className="font-heading text-2xl font-medium tracking-tight mb-3 pr-8">{title}</h3>
         )}
         <div>{children}</div>
       </div>

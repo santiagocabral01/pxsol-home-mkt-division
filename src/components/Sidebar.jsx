@@ -44,16 +44,16 @@ function Item({ to, label, icon: Icon, accent }) {
       {({ isActive }) => (
         <>
           {isActive && (
-            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-[3px] h-[3px] rounded-full bg-warm" />
+            <span className="absolute left-2.5 top-1/2 -translate-y-1/2 w-[3px] h-[3px] rounded-full bg-[color:var(--color-brand)]" />
           )}
           <Icon
             size={16}
             strokeWidth={1.75}
-            className={accent ? 'text-warm' : ''}
+            className={accent ? 'text-[color:var(--color-brand-text)]' : ''}
           />
           <span>{label}</span>
           {accent && (
-            <span className="ml-auto text-[9px] uppercase tracking-[0.1em] text-warm font-semibold">
+            <span className="ml-auto text-[9px] uppercase tracking-[0.1em] text-[color:var(--color-brand-text)] font-semibold">
               IA
             </span>
           )}
@@ -72,7 +72,7 @@ export default function Sidebar() {
         <div className="text-[11px] uppercase tracking-wider text-ink-mute mb-1">
           Hotel
         </div>
-        <div className="font-display text-[20px] leading-tight text-ink">
+        <div className="font-heading text-[20px] font-medium tracking-tight leading-tight text-ink">
           {hotel.name}
         </div>
         <div className="text-[12px] text-ink-soft mt-0.5">
@@ -112,7 +112,7 @@ export default function Sidebar() {
 
       <div className="px-6 py-4 border-t border-border">
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-full bg-warm-soft text-warm flex items-center justify-center text-[11px] font-semibold">
+          <div className="w-7 h-7 rounded-full bg-pill text-ink-soft flex items-center justify-center text-[11px] font-semibold">
             CM
           </div>
           <div className="min-w-0">

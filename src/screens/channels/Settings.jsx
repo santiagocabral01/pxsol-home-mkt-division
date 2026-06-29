@@ -74,7 +74,7 @@ export default function Settings() {
             <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-1">
               Brand DNA actual
             </div>
-            <div className="font-display text-[20px]">{brand.category}</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">{brand.category}</div>
           </div>
           <div className="flex gap-1.5">
             {brand.palette.map((c) => (
@@ -100,7 +100,7 @@ export default function Settings() {
           <div>
             <div className="text-[13px] text-ink font-medium mb-1">Plan</div>
             <div className="flex items-center gap-2">
-              <Pill tone="warm">Pro · Mensual</Pill>
+              <Pill tone="neutral">Pro · Mensual</Pill>
               <span className="text-[12px] text-ink-soft">
                 USD 89/mes · próxima factura 1 jul
               </span>

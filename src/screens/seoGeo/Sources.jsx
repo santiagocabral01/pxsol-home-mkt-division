@@ -18,7 +18,8 @@ function statusUi(status) {
     return { icon: CheckCircle2, label: 'Presente', tone: 'text-green', bg: 'bg-green-soft' }
   if (status === 'pending')
     return { icon: Clock, label: 'Pendiente', tone: 'text-[#8B6F1F]', bg: 'bg-amber-soft' }
-  return { icon: Circle, label: 'Ausente', tone: 'text-warm', bg: 'bg-warm-soft' }
+  /* Ausente usa amber — estado negativo, no debe compartir el rojo de marca (QA punto 2) */
+  return { icon: Circle, label: 'Ausente', tone: 'text-[#8B6F1F]', bg: 'bg-amber-soft' }
 }
 
 export default function Sources() {
@@ -58,7 +59,7 @@ export default function Sources() {
       <div className="hp-card overflow-hidden mb-8">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between gap-4">
           <div>
-            <div className="font-display text-[20px]">Dominios que te mencionan</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Dominios que te mencionan</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Backlinks y citas en menciones editoriales, listings y foros.
             </div>
@@ -124,8 +125,8 @@ export default function Sources() {
       {/* Recomendaciones */}
       <div className="hp-card p-6">
         <div className="flex items-center gap-2 mb-3">
-          <Quote size={14} className="text-warm" />
-          <div className="font-display text-[20px] text-ink">Fuentes recomendadas</div>
+          <Quote size={14} className="text-ink-soft" />
+          <div className="font-heading text-[20px] font-medium tracking-tight text-ink">Fuentes recomendadas</div>
         </div>
         <p className="text-[13px] text-ink-soft mb-5">
           Dónde priorizar para conseguir menciones — ordenado por impacto en motores generativos.
@@ -145,7 +146,7 @@ export default function Sources() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <div className="text-[14px] text-ink font-medium">{r.name}</div>
-                    <Pill tone={r.priority === 'high' ? 'warm' : r.priority === 'medium' ? 'cool' : 'neutral'}>
+                    <Pill tone={r.priority === 'high' ? 'brand' : r.priority === 'medium' ? 'cool' : 'neutral'}>
                       {r.priority === 'high' ? 'Prioridad alta' : r.priority === 'medium' ? 'Media' : 'Baja'}
                     </Pill>
                   </div>

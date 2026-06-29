@@ -24,7 +24,7 @@ export default function WebsitePreview() {
       >
         <div
           style={{
-            fontFamily: 'Playfair Display, serif',
+            fontFamily: 'var(--font-display)',
             fontSize: 22,
             letterSpacing: '0.04em',
             color: primary,
@@ -69,7 +69,7 @@ export default function WebsitePreview() {
           <h1
             className="text-white"
             style={{
-              fontFamily: 'Playfair Display, serif',
+              fontFamily: 'var(--font-display)',
               fontSize: 58,
               lineHeight: 1.05,
               fontWeight: 500,
@@ -106,7 +106,7 @@ export default function WebsitePreview() {
             </div>
             <h2
               style={{
-                fontFamily: 'Playfair Display, serif',
+                fontFamily: 'var(--font-display)',
                 fontSize: 36,
                 color: primary,
               }}
@@ -133,7 +133,7 @@ export default function WebsitePreview() {
               </div>
               <div
                 className="font-display text-[20px] mb-1"
-                style={{ color: primary, fontFamily: 'Playfair Display' }}
+                style={{ color: primary, fontFamily: 'var(--font-display)' }}
               >
                 {r.name}
               </div>
@@ -161,7 +161,7 @@ export default function WebsitePreview() {
           <h2
             className="mb-10"
             style={{
-              fontFamily: 'Playfair Display, serif',
+              fontFamily: 'var(--font-display)',
               fontSize: 36,
               color: primary,
               maxWidth: 500,
@@ -182,7 +182,7 @@ export default function WebsitePreview() {
                 <div
                   className="text-[16px] mb-1"
                   style={{
-                    fontFamily: 'Playfair Display',
+                    fontFamily: 'var(--font-display)',
                     color: primary,
                   }}
                 >
@@ -206,7 +206,7 @@ export default function WebsitePreview() {
           </div>
           <h2
             style={{
-              fontFamily: 'Playfair Display, serif',
+              fontFamily: 'var(--font-display)',
               fontSize: 36,
               color: primary,
               maxWidth: 400,
@@ -251,7 +251,7 @@ export default function WebsitePreview() {
       >
         <div
           style={{
-            fontFamily: 'Playfair Display, serif',
+            fontFamily: 'var(--font-display)',
             fontSize: 24,
             letterSpacing: '0.04em',
           }}

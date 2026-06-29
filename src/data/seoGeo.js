@@ -66,7 +66,7 @@ export const visibilityOverview = {
       type: 'new_keyword',
       text: '3 keywords nuevas con potencial detectadas en GSC',
       link: '/app/hub/seo-geo/seo',
-      tone: 'warm',
+      tone: 'brand',
       time: 'hace 2 días',
     },
   ],

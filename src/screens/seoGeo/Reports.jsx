@@ -86,7 +86,7 @@ export default function Reports() {
                 </div>
                 <button
                   onClick={() => updateReport({ logoUrl: null })}
-                  className="p-1 text-ink-mute hover:text-warm"
+                  className="p-1 text-ink-mute hover:text-[color:var(--color-brand-text)]"
                   aria-label="Quitar logo"
                 >
                   <Trash2 size={13} />
@@ -166,7 +166,7 @@ export default function Reports() {
               <div className="text-[10px] uppercase tracking-[0.12em] text-white/60 font-medium mb-1">
                 Reporte SEO / GEO · {reportPreview.period}
               </div>
-              <div className="font-display text-[26px] leading-tight">
+              <div className="font-heading text-[26px] font-medium tracking-tight leading-tight">
                 Hotel Azul Marino
               </div>
               <div className="text-[12px] text-white/70 mt-1">
@@ -211,7 +211,7 @@ export default function Reports() {
                           h.delta.startsWith('-') && h.label.includes('Posición')
                             ? 'text-green'
                             : h.delta.startsWith('-')
-                            ? 'text-warm'
+                            ? 'text-[color:var(--color-brand-text)]'
                             : 'text-green'
                         }`}
                       >
@@ -232,7 +232,7 @@ export default function Reports() {
                 <LineChart series={visibilityOverview.series30d} height={170} />
                 <div className="flex items-center gap-4 mt-2 text-[11px] text-ink-soft">
                   <span className="inline-flex items-center gap-1.5">
-                    <span className="w-2.5 h-0.5 bg-warm rounded" /> SEO
+                    <span className="w-2.5 h-0.5 bg-[color:var(--color-brand)] rounded" /> SEO
                   </span>
                   <span className="inline-flex items-center gap-1.5">
                     <span className="w-2.5 h-0.5 bg-cool rounded" /> GEO
@@ -269,7 +269,7 @@ export default function Reports() {
               <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-3">
                 Acciones recomendadas para el próximo mes
               </div>
-              <ol className="space-y-2 list-decimal list-inside marker:text-warm marker:font-mono marker:text-[11px]">
+              <ol className="space-y-2 list-decimal list-inside marker:text-[color:var(--color-brand-text)] marker:font-mono marker:text-[11px]">
                 {reportPreview.recommendations.map((r) => (
                   <li key={r} className="text-[13px] text-ink leading-relaxed pl-1">
                     {r}

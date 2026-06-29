@@ -5,30 +5,44 @@
   --color-card: #ffffff;
   --color-border: #ebebeb;
   --color-border-strong: #d9d9d6;
-  --color-ink: #1a1a1a;
-  --color-ink-soft: #6b7280;
-  --color-ink-mute: #b0b0b0;
+  --color-ink: #000017;           /* ink navy (DS comercial PXSOL) — nunca #000 puro */
+  --color-ink-soft: #555555;      /* texto secundario (DS comercial ink-350) */
+  --color-ink-mute: #999999;      /* muted: fechas, labels (DS comercial ink-400) */
   --color-pill: #f3f3f1;
   --color-surface-hover: #f7f7f5;
 
-  --color-warm: #d4845a;
-  --color-warm-soft: #f7e7dc;
-  --color-cool: #5b8fbf;
-  --color-cool-soft: #e1ecf5;
-  --color-green: #6baf8a;
-  --color-green-soft: #e0efe6;
-  --color-amber: #d4a853;
-  --color-amber-soft: #f7eed6;
+  --color-brand:       #D20A11;   /* rojo de marca PXSOL (web comercial) — CTA, acento */
+  --color-brand-hover: #B3090F;   /* hover del rojo (web comercial) */
+  --color-brand-text:  #D20A11;   /* marca como texto/links sobre claro — 5.5:1 AA */
+  --color-brand-soft:  #FCE2E3;   /* superficie roja sutil (DS comercial red-100) */
+  --color-cool: #2A6FDB;          /* azul info (DS comercial) */
+  --color-cool-soft: #D6EFFF;     /* info-bg (DS comercial) */
+  --color-green: #1F8A5B;         /* verde éxito (DS comercial) */
+  --color-green-soft: #E4F4EC;    /* success-bg (DS comercial) */
+  --color-amber: #F1C200;         /* amarillo warning/CRM (DS comercial) — fill/acento, no texto */
+  --color-amber-soft: #FDF6D9;    /* warning-bg suave (DS comercial) */
 
-  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  /* Token de error/destructivo — NO reusar --color-brand para estados negativos */
+  --color-destructive: #d4183d;
+  --color-destructive-soft: #fce8ed;
+
+  --font-heading: 'Work Sans', 'Inter', system-ui, sans-serif;  /* UI de producto: nav, modales, dashboards, títulos de sección */
+  --font-display: 'Work Sans', 'Helvetica Neue', Arial, sans-serif; /* DS puro: Work Sans (antes Playfair) */
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
 
-  --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.07);
-  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.11);
-  --shadow-float: 0 32px 80px rgba(0, 0, 0, 0.15);
+  /* Tokens de acento por producto — cada vista de canal sobreescribe estos tres
+     en su contenedor raíz vía style={{ '--color-accent': '...', … }}.
+     Default = marca (rojo PXSOL) para vistas sin producto asignado. */
+  --color-accent:      var(--color-brand);
+  --color-accent-dark: var(--color-brand-text);   /* texto/íconos sobre claro — contraste OK */
+  --color-accent-soft: var(--color-brand-soft);   /* chips / fondos suaves */
 
-  --radius-card: 12px;
+  --shadow-card: 0 1px 2px rgba(0, 0, 23, 0.05), 0 10px 30px rgba(0, 0, 23, 0.07);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 23, 0.12);
+  --shadow-float: 0 22px 50px rgba(0, 0, 23, 0.18);
+
+  --radius-card: 14px;
   --radius-modal: 16px;
 }
 
@@ -49,7 +63,7 @@
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--color-bg);
     background-image:
-      radial-gradient(ellipse at 15% 20%, #fde8d0 0%, transparent 50%),
+      radial-gradient(ellipse at 15% 20%, #FCE2E3 0%, transparent 50%),
       radial-gradient(ellipse at 85% 10%, #d6e8f7 0%, transparent 45%),
       radial-gradient(ellipse at 50% 80%, #e8f0e8 0%, transparent 50%);
     background-attachment: fixed;
@@ -58,10 +72,11 @@
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading); /* Work Sans por defecto; editorial usa font-display explícito */
     color: var(--color-ink);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em; /* tracking DS comercial Work Sans */
     line-height: 1.1;
+    font-weight: 500; /* peso base DS comercial Work Sans */
   }
 
   button {
@@ -81,14 +96,14 @@
   }
 
   ::selection {
-    background: var(--color-warm-soft);
+    background: var(--color-brand-soft);
     color: var(--color-ink);
   }
 }
 
 @utility hp-underline {
   text-decoration: underline;
-  text-decoration-color: var(--color-warm);
+  text-decoration-color: var(--color-brand-text);
   text-decoration-thickness: 3px;
   text-underline-offset: 6px;
 }
@@ -255,7 +270,7 @@
   animation: hp-float 7s ease-in-out infinite;
 }
 
-/* Lift + warm glow on interactive cards. */
+/* Lift + glow on interactive cards. */
 .hp-lift {
   transition:
     transform 0.35s cubic-bezier(0.22, 0.85, 0.25, 1),
@@ -477,14 +492,14 @@
   }
 }
 
-/* Warm focus ring that pulses on the button about to be clicked. */
+/* Brand focus ring that pulses on the button about to be clicked. */
 @keyframes hpd-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(212, 132, 90, 0);
+    box-shadow: 0 0 0 0 rgba(210, 10, 17, 0);
   }
   50% {
-    box-shadow: 0 0 0 7px rgba(212, 132, 90, 0.22);
+    box-shadow: 0 0 0 7px rgba(210, 10, 17, 0.22);
   }
 }
 

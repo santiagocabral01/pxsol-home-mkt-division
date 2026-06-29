@@ -17,7 +17,7 @@ import { useSeoGeo, useSimulatedAsync } from '../../context/SeoGeoContext'
 import { SimOverlay } from './_shared'
 
 const reasonUi = {
-  opportunity_keyword: { icon: TrendingUp, tone: 'warm', label: 'Oportunidad de keyword' },
+  opportunity_keyword: { icon: TrendingUp, tone: 'brand', label: 'Oportunidad de keyword' },
   ai_faq: { icon: Bot, tone: 'cool', label: 'Pregunta frecuente en IA' },
   seasonality: { icon: CalendarClock, tone: 'green', label: 'Estacionalidad' },
 }
@@ -52,7 +52,7 @@ export default function Suggestions() {
         title="Tres ideas listas para producir cada semana."
         subtitle="No tenés que pensar qué publicar. Te llegan curadas, con motivo, tipo y un brief listo para mandar al generador."
         right={
-          <Pill tone="warm">
+          <Pill tone="neutral">
             <Lightbulb size={11} /> Semana del 8 al 14 de junio
           </Pill>
         }
@@ -63,7 +63,7 @@ export default function Suggestions() {
           <div className="w-14 h-14 rounded-full bg-pill text-ink-soft flex items-center justify-center mx-auto mb-4">
             <Inbox size={22} />
           </div>
-          <div className="font-display text-[22px] mb-2">
+          <div className="font-heading text-[22px] font-medium tracking-tight mb-2">
             Sin sugerencias pendientes.
           </div>
           <div className="text-[13px] text-ink-soft max-w-md mx-auto">
@@ -95,7 +95,7 @@ export default function Suggestions() {
                   </button>
                 </div>
 
-                <h3 className="font-display text-[18px] leading-tight mb-3 flex-1">
+                <h3 className="font-heading text-[18px] font-medium tracking-tight leading-tight mb-3 flex-1">
                   {s.title}
                 </h3>
 
@@ -125,9 +125,10 @@ export default function Suggestions() {
         </div>
       )}
 
-      <div className="hp-card p-6 mt-8 bg-warm-soft/30 border border-warm/15">
+      {/* Bloque "Cómo funciona": fondo y ícono neutros — regla del 10% (QA punto 3) */}
+      <div className="hp-card p-6 mt-8 bg-pill border border-border">
         <div className="flex items-start gap-3">
-          <div className="w-9 h-9 rounded-lg bg-warm text-white flex items-center justify-center flex-shrink-0">
+          <div className="w-9 h-9 rounded-lg bg-ink text-white flex items-center justify-center flex-shrink-0">
             <Lightbulb size={16} />
           </div>
           <div>

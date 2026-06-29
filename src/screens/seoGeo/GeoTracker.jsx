@@ -167,7 +167,7 @@ export default function GeoTracker() {
       <div className="hp-card overflow-hidden mb-6">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between gap-4">
           <div>
-            <div className="font-display text-[20px]">Queries monitoreadas</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Queries monitoreadas</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Cada fila es una pregunta real que viajeros le hacen a una IA. Clic para ver el extracto.
             </div>
@@ -244,8 +244,8 @@ export default function GeoTracker() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <div className="flex items-center gap-2">
-              <Trophy size={14} className="text-warm" />
-              <div className="font-display text-[20px] text-ink">Comparativa de competidores</div>
+              <Trophy size={14} className="text-ink-soft" />
+              <div className="font-heading text-[20px] font-medium tracking-tight text-ink">Comparativa de competidores</div>
             </div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Cómo ranquea tu hotel vs. otros boutique de Cartagena en motores de IA.
@@ -417,14 +417,14 @@ function CompetitorRow({ name, score, self, onRemove }) {
   return (
     <div
       className={`flex items-center gap-4 p-3 rounded-lg ${
-        self ? 'bg-warm-soft/40 border border-warm/20' : 'hover:bg-surface-hover'
+        self ? 'bg-[color:var(--color-brand-soft)]/40 border border-[color:var(--color-brand)]/20' : 'hover:bg-surface-hover'
       } transition group`}
     >
       <div className="flex-1 min-w-0">
         <div className="text-[13px] text-ink font-medium truncate">{name}</div>
       </div>
       <div className="flex items-center gap-3 flex-1 max-w-[420px]">
-        <ScoreBar value={score} tone={self ? 'warm' : 'cool'} />
+        <ScoreBar value={score} tone={self ? 'brand' : 'cool'} />
         <span className="font-mono text-[14px] text-ink min-w-[40px] text-right">
           {score}
         </span>

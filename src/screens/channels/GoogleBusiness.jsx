@@ -35,6 +35,14 @@ function StarRow({ value }) {
   )
 }
 
+/* Acento producto: ads — azul (#0C73A6 dark · #3CAEE7 base · #CBE4F1 soft)
+   --color-accent-dark (#0C73A6) ~5:1 sobre blanco → pasa WCAG AA texto pequeño. */
+const ADS_ACCENT = {
+  '--color-accent':      '#3CAEE7',
+  '--color-accent-dark': '#0C73A6',
+  '--color-accent-soft': '#CBE4F1',
+}
+
 export default function GoogleBusiness() {
   const [data, setData] = useState(gb)
   const [openReply, setOpenReply] = useState(null)
@@ -49,7 +57,7 @@ export default function GoogleBusiness() {
     }))
 
   return (
-    <div className="px-10 py-10 max-w-[1400px] mx-auto">
+    <div className="px-10 py-10 max-w-[1400px] mx-auto" style={ADS_ACCENT}>
       <ChannelHeader
         eyebrow="Canal · Google Business Profile"
         highlight="encuentren"
@@ -121,7 +129,7 @@ export default function GoogleBusiness() {
             ))}
           </div>
           <div className="p-4">
-            <div className="font-display text-[20px] mb-0.5">{data.name}</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight mb-0.5">{data.name}</div>
             <div className="flex items-center gap-2 mb-1.5">
               <StarRow value={4.6} />
               <span className="text-[12px] text-ink-soft">(284 reseñas)</span>
@@ -192,7 +200,7 @@ export default function GoogleBusiness() {
             <Field
               label="Descripción corta"
               hint={
-                <span className="text-warm">
+                <span style={{ color: 'var(--color-accent-dark)' }}>
                   ✦ generada con IA
                 </span>
               }
@@ -270,7 +278,7 @@ export default function GoogleBusiness() {
                   <img src={p} alt="" className="w-full h-full object-cover" />
                 </div>
               ))}
-              <button className="aspect-square rounded-md border border-dashed border-border-strong text-ink-soft hover:border-warm hover:text-warm flex items-center justify-center">
+              <button className="aspect-square rounded-md border border-dashed border-border-strong text-ink-soft hover:border-[color:var(--color-accent)] hover:text-[color:var(--color-accent-dark)] flex items-center justify-center">
                 <Plus size={14} />
               </button>
             </div>
@@ -282,7 +290,7 @@ export default function GoogleBusiness() {
                 <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-0.5">
                   Reseñas recientes
                 </div>
-                <div className="font-display text-[18px]">
+                <div className="font-heading text-[18px] font-medium tracking-tight">
                   3 esperando respuesta
                 </div>
               </div>

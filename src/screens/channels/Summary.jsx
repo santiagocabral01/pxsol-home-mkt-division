@@ -58,7 +58,7 @@ export default function Summary() {
             </span>
             <span className="text-ink-soft text-[14px]">/ 100</span>
           </div>
-          <ScoreBar value={summary.presenceScore} tone="warm" />
+          <ScoreBar value={summary.presenceScore} tone="brand" />
           <div className="flex items-center gap-1.5 mt-3 text-[11px] text-green">
             <TrendingUp size={11} /> +18 puntos esta semana
           </div>
@@ -114,12 +114,12 @@ export default function Summary() {
       <div className="hp-card overflow-hidden">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between">
           <div>
-            <div className="font-display text-[20px]">Canales de {hotel.name}</div>
+            <div className="font-heading text-[20px] font-medium tracking-tight">Canales de {hotel.name}</div>
             <div className="text-[12px] text-ink-soft mt-0.5">
               Estado actualizado hace 12 minutos
             </div>
           </div>
-          <Pill tone="warm">✦ Generado con IA</Pill>
+          <Pill tone="brand">✦ Generado con IA</Pill>
         </div>
         <table className="w-full">
           <thead>
@@ -167,7 +167,7 @@ export default function Summary() {
       {/* Recomendaciones */}
       <div className="hp-card p-6 mt-6">
         <div className="flex items-center gap-2 mb-4">
-          <Sparkles size={14} className="text-warm" />
+          <Sparkles size={14} className="text-[color:var(--color-brand-text)]" />
           <span className="text-[11px] uppercase tracking-wider text-ink font-medium">
             Próximos pasos sugeridos
           </span>
@@ -187,22 +187,27 @@ export default function Summary() {
             {
               t: 'Respondé las 3 reseñas pendientes',
               s: 'Las propiedades que responden todas las reseñas convierten 31% más.',
-              tone: 'warm',
+              tone: 'brand',
             },
           ].map((r) => (
             <div
               key={r.t}
               className="flex items-start gap-3 p-3 rounded-lg hover:bg-surface-hover transition"
             >
+              {/*
+               * Dot: mapa estático de tone→color para que Tailwind compile las clases.
+               * Evita bg-${r.tone} dinámico que JIT no puede purgar correctamente.
+               * El brand usa var(--color-brand) via style para respetar el token (QA punto 6).
+               */}
               <div
-                className={`mt-1 w-1.5 h-1.5 rounded-full bg-${r.tone}`}
+                className="mt-1 w-1.5 h-1.5 rounded-full"
                 style={{
                   background:
-                    r.tone === 'warm'
-                      ? '#D4845A'
+                    r.tone === 'brand'
+                      ? 'var(--color-brand)'
                       : r.tone === 'cool'
-                      ? '#5B8FBF'
-                      : '#D4A853',
+                      ? 'var(--color-cool)'
+                      : 'var(--color-amber)',
                 }}
               />
               <div className="flex-1">

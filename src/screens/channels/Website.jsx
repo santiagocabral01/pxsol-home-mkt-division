@@ -17,13 +17,21 @@ import { Field, Input } from '../../components/ui/Field'
 import WebsitePreview from '../../components/WebsitePreview'
 import { websiteMeta } from '../../data/hotel'
 
+/* Acento producto: web — verde (#5E882B dark · #95C160 base · #DFE6D6 soft)
+   --color-accent-dark (#5E882B) ~5:1 sobre blanco → pasa WCAG AA texto pequeño. */
+const WEB_ACCENT = {
+  '--color-accent':      '#95C160',
+  '--color-accent-dark': '#5E882B',
+  '--color-accent-soft': '#DFE6D6',
+}
+
 export default function Website() {
   const [openDomain, setOpenDomain] = useState(false)
   const [openInfo, setOpenInfo] = useState(null)
   const [domain, setDomain] = useState('hotelazulmarino.com')
 
   return (
-    <div className="px-10 py-10 max-w-[1400px] mx-auto">
+    <div className="px-10 py-10 max-w-[1400px] mx-auto" style={WEB_ACCENT}>
       <ChannelHeader
         eyebrow="Canal · Sitio Web"
         highlight="completo"
@@ -79,7 +87,7 @@ export default function Website() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5">
-                  <Gauge size={13} className="text-warm" />
+                  <Gauge size={13} className="text-ink-soft" />
                   <span className="text-[12px] text-ink font-medium">
                     SEO Score
                   </span>
@@ -88,7 +96,7 @@ export default function Website() {
                   {websiteMeta.seoScore}/100
                 </span>
               </div>
-              <ScoreBar value={websiteMeta.seoScore} tone="warm" />
+              <ScoreBar value={websiteMeta.seoScore} tone="accent" />
             </div>
             <button
               onClick={() =>
@@ -154,7 +162,7 @@ export default function Website() {
                 'Contacto',
               ].map((p) => (
                 <li key={p} className="flex items-center gap-1.5">
-                  <span className="w-1 h-1 rounded-full bg-warm" /> {p}
+                  <span className="w-1 h-1 rounded-full bg-ink-mute" /> {p}
                 </li>
               ))}
             </ul>

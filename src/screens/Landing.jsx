@@ -21,6 +21,7 @@ import Pill from '../components/ui/Pill'
 import Button from '../components/ui/Button'
 import DemoPlayer from '../components/DemoPlayer'
 import { hotelImages } from '../data/hotel'
+import { BRAND_GRADIENT } from '../styles/brand'
 
 /* Reveals its children when they scroll into view. `delay` staggers the
    entrance; `variant` picks the travel direction (up | left | right | scale). */
@@ -72,7 +73,7 @@ function Logo() {
           className="w-7 h-7 rounded-lg flex items-center justify-center"
           style={{
             background:
-              'linear-gradient(135deg, #D4845A 0%, #D4A853 100%)',
+              BRAND_GRADIENT,
           }}
         >
           <Sparkles size={14} className="text-white" strokeWidth={2.4} />
@@ -145,7 +146,7 @@ function ProductScreenshot() {
                   }`}
                 >
                   {it.active && (
-                    <span className="absolute left-2 w-[3px] h-[3px] rounded-full bg-warm" />
+                    <span className="absolute left-2 w-[3px] h-[3px] rounded-full bg-[color:var(--color-brand)]" />
                   )}
                   <it.i size={12} strokeWidth={1.75} />
                   <span>{it.l}</span>
@@ -195,7 +196,7 @@ function ProductScreenshot() {
               />
               <div className="p-3 bg-[#FBFAF6] h-[170px]">
                 <div className="flex items-center gap-1.5 mb-2">
-                  <span className="text-[8px] uppercase tracking-[0.18em] text-warm">
+                  <span className="text-[8px] uppercase tracking-[0.18em] text-[color:var(--color-brand-text)]">
                     Cartagena · Colombia
                   </span>
                 </div>
@@ -240,7 +241,7 @@ function ProductScreenshot() {
         className="absolute -bottom-6 -right-6 hp-card px-4 py-2.5 flex items-center gap-2 hp-float-slow"
         style={{ boxShadow: '0 12px 32px rgba(0,0,0,0.12)' }}
       >
-        <span className="w-6 h-6 rounded-full bg-warm-soft text-warm flex items-center justify-center">
+        <span className="w-6 h-6 rounded-full bg-[color:var(--color-brand-soft)] text-[color:var(--color-brand-text)] flex items-center justify-center">
           <Sparkles size={12} />
         </span>
         <div className="text-left">
@@ -276,7 +277,7 @@ function StepCard({ n, icon: Icon, title, body }) {
         </div>
         <Icon
           size={20}
-          className="text-warm transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
+          className="text-ink-soft transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
           strokeWidth={1.5}
         />
       </div>
@@ -291,7 +292,7 @@ function ChannelCard({ icon: Icon, title, body, items }) {
     <div className="hp-card hp-lift p-6 group">
       <Icon
         size={18}
-        className="text-warm mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
+        className="text-ink-soft mb-4 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6"
         strokeWidth={1.75}
       />
       <div className="font-display text-[20px] mb-1.5 leading-tight">
@@ -304,7 +305,7 @@ function ChannelCard({ icon: Icon, title, body, items }) {
             key={i}
             className="flex items-center gap-1.5 text-[12px] text-ink-soft"
           >
-            <span className="w-1 h-1 rounded-full bg-warm" /> {i}
+            <span className="w-1 h-1 rounded-full bg-ink-mute" /> {i}
           </li>
         ))}
       </ul>
@@ -358,7 +359,7 @@ export default function Landing() {
       {/* HERO */}
       <section className="relative max-w-[1180px] mx-auto px-8 pt-24 pb-32 text-center">
         <div className="hp-stagger">
-          <Pill tone="warm" className="mb-6">
+          <Pill tone="brand" className="mb-6">
             <Sparkles size={11} /> Demo en vivo · 100% editable
           </Pill>
 
@@ -431,7 +432,7 @@ export default function Landing() {
         className="max-w-[1180px] mx-auto px-8 py-28"
       >
         <Reveal className="text-center mb-14">
-          <Pill tone="warm" className="mb-4">
+          <Pill tone="neutral" className="mb-4">
             ✦ Cómo funciona
           </Pill>
           <Headline
@@ -487,7 +488,7 @@ export default function Landing() {
         <div className="max-w-[1180px] mx-auto px-8">
           <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
             <Reveal variant="left">
-              <Pill tone="warm" className="mb-4">
+              <Pill tone="neutral" className="mb-4">
                 ✦ Seis canales · un solo hub
               </Pill>
               <Headline
@@ -606,7 +607,7 @@ export default function Landing() {
             className="absolute -top-32 -right-32 w-[400px] h-[400px] rounded-full opacity-30"
             style={{
               background:
-                'radial-gradient(circle, #D4845A 0%, transparent 70%)',
+                'radial-gradient(circle, var(--color-brand) 0%, transparent 70%)',
             }}
           />
           <div
@@ -618,7 +619,7 @@ export default function Landing() {
           />
           <div className="relative">
             <Pill
-              tone="warm"
+              tone="brand"
               className="mb-5"
             >
               <Sparkles size={11} /> Demo en vivo
@@ -629,8 +630,8 @@ export default function Landing() {
             >
               Probá Hotel Presence con tu hotel{' '}
               <span
-                className="underline decoration-warm decoration-[3px] underline-offset-[6px]"
-                style={{ textDecorationColor: '#D4845A' }}
+                className="underline decoration-[3px] underline-offset-[6px]"
+                style={{ textDecorationColor: 'var(--color-brand-text)' }}
               >
                 ahora mismo
               </span>
@@ -644,7 +645,7 @@ export default function Landing() {
               <Button
                 size="lg"
                 onClick={start}
-                variant="warm"
+                variant="brand"
                 className="px-7 group"
               >
                 Comenzar gratis <ArrowRight size={16} className="hp-arrow" />

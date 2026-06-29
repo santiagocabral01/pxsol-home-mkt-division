@@ -46,10 +46,7 @@ function PostCard({ post, onAction }) {
               'linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6))',
           }}
         >
-          <div
-            className="font-display text-[20px] leading-tight"
-            style={{ fontFamily: 'Playfair Display' }}
-          >
+          <div className="font-display text-[20px] leading-tight">
             {post.overlay}
           </div>
           <div className="text-[11px] opacity-90 mt-1">{post.sub}</div>
@@ -164,7 +161,7 @@ export default function SocialMedia() {
                 {socialPosts[n.id].length}
               </Pill>
               {active && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-warm" />
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[color:var(--color-brand)]" />
               )}
             </button>
           )
@@ -206,7 +203,7 @@ export default function SocialMedia() {
           <aside className="hidden lg:block flex-shrink-0 w-[320px] sticky top-6 hp-fade-in">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-1.5 text-[12px] text-ink-soft">
-                <Smartphone size={14} className="text-warm" />
+                <Smartphone size={14} className="text-ink-soft" />
                 Previsualización · {network}
               </div>
               <button

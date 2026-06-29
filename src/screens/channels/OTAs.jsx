@@ -23,6 +23,14 @@ function AmenityChip({ label, onRemove }) {
   )
 }
 
+/* Acento producto: channel — naranja (#A34100 dark · #FF7316 base · #F7D0B6 soft)
+   --color-accent-dark (#A34100) ~6:1 sobre blanco → pasa WCAG AA texto pequeño. */
+const CHANNEL_ACCENT = {
+  '--color-accent':      '#FF7316',
+  '--color-accent-dark': '#A34100',
+  '--color-accent-soft': '#F7D0B6',
+}
+
 export default function OTAs() {
   const [active, setActive] = useState(otaList[0])
   const [data, setData] = useState({ otas, rooms: otaRooms })
@@ -44,7 +52,7 @@ export default function OTAs() {
   }
 
   return (
-    <div className="px-10 py-10 max-w-[1400px] mx-auto">
+    <div className="px-10 py-10 max-w-[1400px] mx-auto" style={CHANNEL_ACCENT}>
       <ChannelHeader
         eyebrow="Canal · OTAs / Booking"
         highlight="adaptado"
@@ -70,7 +78,7 @@ export default function OTAs() {
             >
               {o}
               {isActive && (
-                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-warm" />
+                <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[color:var(--color-accent)]" />
               )}
             </button>
           )
@@ -85,7 +93,7 @@ export default function OTAs() {
               <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium">
                 Descripción generada
               </div>
-              <Pill tone="warm">{ota.badge}</Pill>
+              <Pill tone="accent">{ota.badge}</Pill>
             </div>
             <Textarea
               value={ota.description}
@@ -107,7 +115,7 @@ export default function OTAs() {
                 <div className="text-[10px] uppercase tracking-[0.12em] text-ink-mute font-medium mb-0.5">
                   Tipos de habitación
                 </div>
-                <div className="font-display text-[20px]">
+                <div className="font-heading text-[20px] font-medium tracking-tight">
                   3 categorías publicadas
                 </div>
               </div>
@@ -126,7 +134,7 @@ export default function OTAs() {
                   </div>
                   <div className="flex-1 p-4">
                     <div className="flex items-start justify-between mb-1">
-                      <div className="font-display text-[16px] text-ink">
+                      <div className="font-heading text-[16px] font-medium tracking-tight text-ink">
                         {r.name}
                       </div>
                       <div className="flex items-center gap-1.5">
@@ -248,7 +256,7 @@ export default function OTAs() {
 
           <div className="hp-card p-6">
             <div className="flex items-center gap-2 mb-3">
-              <AlertCircle size={14} className="text-warm" />
+              <AlertCircle size={14} className="text-ink-soft" />
               <span className="text-[11px] uppercase tracking-wider text-ink font-medium">
                 Falta completar
               </span>
@@ -256,7 +264,7 @@ export default function OTAs() {
             <ul className="space-y-2 text-[13px] text-ink-soft">
               {ota.missing.map((m) => (
                 <li key={m} className="flex items-start gap-2">
-                  <span className="w-1 h-1 rounded-full bg-warm mt-2 flex-shrink-0" />
+                  <span className="w-1 h-1 rounded-full bg-ink-mute mt-2 flex-shrink-0" />
                   {m}
                 </li>
               ))}
